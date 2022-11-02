@@ -6,14 +6,16 @@ public class FoodItem {
 
     private char type;
     private String name;
+    private String description;
     private double price;
     private byte state;
 
 
-    public FoodItem(char type, String name, double price, byte state){
+    public FoodItem(char type, String name, String description, double price, byte state){
 
         this.type = type;
         this.name = name;
+        this.description = description;
         this.price = price;
         this.state = 0;
 
@@ -24,6 +26,10 @@ public class FoodItem {
 
     public char getType(){
         return type;
+    }
+
+    public String getDescription(){
+        return description;
     }
 
     public String getName() {
@@ -43,6 +49,10 @@ public class FoodItem {
 
     public void setType(char type){
         this.type = type;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
     }
 
 
