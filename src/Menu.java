@@ -8,7 +8,7 @@ public class Menu {
         FoodItem pizza = new FoodItem('M', "Pizza", "pizza, dish of Italian origin consisting of a flattened disk of bread dough topped with some combination", 15.0);
 
 
-        System.out.println("Price of pizza = " + pizza.getPrice());
+        System.out.println("Cost of pizza = " + pizza.getPrice());
 
 
 
