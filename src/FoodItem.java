@@ -8,17 +8,14 @@ public class FoodItem {
     private String name;
     private String description;
     private double price;
-    private byte state;
 
 
-    public FoodItem(char type, String name, String description, double price, byte state){
+    public FoodItem(char type, String name, String description, double price){
 
         this.type = type;
         this.name = name;
         this.description = description;
         this.price = price;
-        this.state = 0;
-
     }
 
 
@@ -40,11 +37,6 @@ public class FoodItem {
         return price;
     }
 
-    public byte getState(){
-        return state;
-    }
-
-
     /*      Setters       */
 
     public void setType(char type){
@@ -64,9 +56,6 @@ public class FoodItem {
         this.price = price;
     }
 
-    public void setState(byte state) {
-        this.state = state;
-    }
 
 
 }
