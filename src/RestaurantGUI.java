@@ -20,19 +20,20 @@ public class RestaurantGUI extends JPanel {
 
 
         // background
-        g.setColor(Color.BLACK);
+        g.setColor(Color.LIGHT_GRAY);
         g.fillRect(0,0,screenWidth,screenLength);
 
         //tables
-        for(int i=1; i<=5;i++){
-            g.setColor(Color.GREEN);
-            g.fillRect(xPos * 3*i, yPos, tablewidth, tablelength);
+        //for(int i=1; i<=5;i++){
+       //     g.setColor(Color.GREEN);
+       //     g.fillRect(xPos * 3*i, yPos, tablewidth, tablelength);
+       // }
+        for(int i=1; i<=5;i++) {
+            JButton table1 = new JButton("Table"+i);
+            table1.setBounds(xPos * 3*i , yPos, tablewidth, tablelength);
+            table1.setBackground(Color.GREEN);
+            add(table1);
         }
-
-        JButton table1= new JButton("Table 1");
-        table1.setBounds(xPos*3,yPos,tablewidth-20,tablelength-20);
-        add(table1);
-
 
     }
 
