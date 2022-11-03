@@ -47,7 +47,6 @@ public class FoodItem {
         this.description = description;
     }
 
-
     public void setName(String name) {
         this.name = name;
     }
