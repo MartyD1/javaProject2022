@@ -50,24 +50,4 @@ public class Booking {
                 getDate().toString(), getTime().toString(),
                 getName(), getNumberOfPeople(), getComments());
     }
-
-//    @Override
-//    public boolean equals(Object obj) {
-//        if (obj == null) return false;
-//        if (obj == this) return true;
-//        if (!(obj instanceof BookingDate)) return false;
-//
-//        BookingDate otherDate = (BookingDate)obj;
-//        if (this.date != otherDate) {
-//            return false;
-//        }
-//        return true;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        int hash = 3;
-//        hash = 53 * hash + (this.date != null ? this.date.hashCode() : 0);
-//        return hash;
-//    }
 }

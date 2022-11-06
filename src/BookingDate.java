@@ -33,6 +33,24 @@ public class BookingDate {
         return day;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        if (!(obj instanceof BookingDate)) return false;
+
+        BookingDate otherDate = (BookingDate)obj;
+        if (this.year != otherDate.getYear())
+            return false;
+        if (this.month != otherDate.getMonth())
+            return false;
+        if (this.day != otherDate.getDay())
+            return false;
+
+        return true;
+    }
+
+    @Override
     public String toString() {
         return String.format("%d-%d-%d", getYear(), getMonth(), getDay());
     }

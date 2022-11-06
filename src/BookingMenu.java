@@ -40,8 +40,6 @@ public class BookingMenu {
                 System.out.println("Special comments: ");
                 String comments = in.nextLine();
 
-                String unused = in.nextLine();
-
                 System.out.println();
 
                 Booking booking = new Booking(d, t, nameString, numberOfGuests, comments);
@@ -60,8 +58,8 @@ public class BookingMenu {
                 String showDate = in.nextLine();
                 BookingDate day = new BookingDate(showDate);
 
-                for (Booking booking : calendar.getBookingsForDay(day)) { //getBookingsForDay returns empty -- see method
-                    System.out.println(booking.toString());               //nothing prints out because of the empty array
+                for (Booking booking : calendar.getBookingsForDay(day)) {
+                    System.out.println(booking.toString());
                 }
             }
             else if (command.equals("Q")) {
