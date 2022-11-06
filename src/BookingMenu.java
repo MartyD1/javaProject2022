@@ -1,5 +1,3 @@
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -12,71 +10,64 @@ public class BookingMenu {
     public BookingMenu() {
         in = new Scanner(System.in); // creates new Scanner object (keyboard)
     }
-    /**
-     * Runs the system
-     */
+
     public void run() {
-        boolean cont = true; // system will keep running while this is true
+        boolean cont = true;
         BookingCalendar calendar = new BookingCalendar();
-
         while (cont) {
-            System.out.println("A)dd booking\nC)ancel booking\nS)how bookings\nQ)uit booking system\nEnter command: ");
+            System.out.println("A)dd booking\nC)ancel booking\nS)how booking\nQ)uit system");
+            String command = in.nextLine().toUpperCase(); // if user inputs lowercase command, it will still be read
 
-            String command = in.nextLine().toUpperCase();
-
-            if(command.equals('A')) {
-                System.out.println("Choose date for booking: (dd-mm-yyyy)");
+            if (command.equals("A")) { // add booking function follows
+                System.out.println("""
+                                    Date of booking
+                                    (yyyy-mm-dd)""");
                 String dateString = in.nextLine();
-                LocalDate date = stringToDate(dateString);
+                BookingDate d = new BookingDate(dateString);
 
-                System.out.println("Choose starting time for booking: (hh:mm)");
-                String startTime = in.nextLine();
+                System.out.println("""
+                                    Time of booking
+                                    (hh:mm)""");
+                String timeString = in.nextLine();
+                BookingTime t = new BookingTime(timeString);
 
-                System.out.println("Choose ending time for booking: (hh:mm)");
-                String endTime = in.nextLine();
+                System.out.println("Name of booking: "); // name could be changed to use getName() method of Customer object down the line
+                String nameString = in.nextLine();
 
-                System.out.println("How many people for the booking: ");
-                int amountPeople = in.nextInt();
+                System.out.println("Number of guests: ");
+                int numberOfGuests = in.nextInt();
 
-                System.out.println("Special comments for booking: ");
+                System.out.println("Special comments: ");
                 String comments = in.nextLine();
 
-                Booking a = new Booking(date, startTime, endTime, amountPeople, comments);
-                calendar.add(a);
-            }
-            if(command.equals('C')) {
-                System.out.println("Date of unwanted booking: (dd-mm-yyyy)");
-                String cancelDate = in.nextLine();
+                String unused = in.nextLine();
 
-                System.out.println("Start time of unwanted booking: (hh:mm)");
-                String cancelStartTime = in.nextLine();
+                System.out.println();
 
-                System.out.println("End time of unwanted booking: (hh:mm)");
-                String cancelEndTime = in.nextLine();
+                Booking booking = new Booking(d, t, nameString, numberOfGuests, comments);
+                calendar.add(booking);
 
+                System.out.println(booking);
 
             }
-            if(command.equals('S')) {
-                System.out.println("Bookings for what date: (dd-mm-yyyy)");
-                String line = in.nextLine();
-
-                LocalDate lineDate = stringToDate(line);
-                BookingDate date = new BookingDate(lineDate); // this is the date you want to see bookings from
-
-                for (Booking booking : calendar.getAppointmentsForDay(day));
-                System.out.println("" + booking);
+            else if (command.equals("C")) {
 
             }
-            if(command.equals('Q')) {
+            else if (command.equals("S")) {
+                System.out.println("""
+                                    Display what date:
+                                    (yyyy-mm-dd)""");
+                String showDate = in.nextLine();
+                BookingDate day = new BookingDate(showDate);
+
+                for (Booking booking : calendar.getBookingsForDay(day)) { //getBookingsForDay returns empty -- see method
+                    System.out.println(booking.toString());               //nothing prints out because of the empty array
+                }
+            }
+            else if (command.equals("Q")) {
                 cont = false;
             }
         }
-    }
-
-    public LocalDate stringToDate(String command) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy");
-        LocalDate date = LocalDate.parse(command, formatter);
-        return date;
     }
 }
 

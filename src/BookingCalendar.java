@@ -1,33 +1,36 @@
-import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class BookingCalendar {
-    private LocalDate date;
-    private ArrayList<Booking> dateBookings;
+public class BookingCalendar  {
 
-    public BookingCalendar(LocalDate date) {
-        this.date = date;
-        this.dateBookings = new ArrayList<>();
-    }
+    private ArrayList<Booking> bookings;
+
 
     public BookingCalendar() {
-        this.date = LocalDate.now();
-        this.dateBookings = new ArrayList<>();
+        this.bookings = new ArrayList<>();
     }
 
-    public void add(Booking e) {
-        this.dateBookings.add(e);
+    public void add(Booking booking) {
+        this.bookings.add(booking);
     }
 
 
-    public ArrayList<Booking> getDateBookings() {
-        return dateBookings;
-    }
+    //issue seems to be with the equals() method in the following block
+    //equals() method from Object class seems to be what's used, rather than the @Override method in Booking class
+    public Booking[] getBookingsForDay(BookingDate day) {
+        ArrayList<Booking> bookingsForDay = new ArrayList<>(); //new ArrayList created to store bookings for the day
 
-    public Booking[] getBookingsForDay(BookingDate date) {
+        for (int i = 0; i < bookings.size(); i++) {            //iterating through ArrayList that holds bookings
+            BookingDate dateCheck = bookings.get(i).getDate(); //creating local variable to make code more readable
 
+            System.out.println(bookings.get(i).getDate().toString());
+            System.out.println(day.toString());
 
-
-        return bookingsForDay;
+            if (dateCheck.equals(day)) {                       //checking if date in bookings ArrayList matches required date
+                bookingsForDay.add(bookings.get(i));           //if condition is satisfied, add Booking object to bookingsForDay
+            }
+        }
+        Booking[] bookingsForDayArray = new Booking[bookingsForDay.size()]; //array of Booking objects with required date
+        bookingsForDay.toArray(bookingsForDayArray);
+        return bookingsForDayArray;
     }
 }
