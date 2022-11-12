@@ -1,3 +1,5 @@
+package ReservationSystem;
+
 import java.util.StringTokenizer; //StringTokenizer splits a String into separate tokens
 
 /**
