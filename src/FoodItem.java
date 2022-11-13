@@ -3,6 +3,7 @@ public class FoodItem {
     private final static char main = 'M';
     private final static char starter = 'S';
     private final static char dessert = 'D';
+    private final static char beverage='B';
 
     private char type;
     private String name;
@@ -55,6 +56,13 @@ public class FoodItem {
         this.price = price;
     }
 
+
+    //override toString method
+    @Override
+    public String toString() {
+        return String.format("\n%s: %s\n%s: %s\n%s: %s\n%s: %.2f\n\n", "Type", getType(),
+                "Name", getName(), "Description", getDescription(), "Price", getPrice());
+    }
 
 
 }
