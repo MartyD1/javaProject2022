@@ -32,9 +32,9 @@ public class FoodItem {
         MOLLUSCS("MO");
 
 
-        public final String alergenCode;
+        public final String allergenCode;
 
-        private final(String allergenCode){
+        private Allergens(String allergenCode){
             this.allergenCode = allergenCode;
 
         }
