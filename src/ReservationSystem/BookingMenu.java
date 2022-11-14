@@ -40,12 +40,15 @@ public class BookingMenu {
                 System.out.println("Number of guests: ");
                 int numberOfGuests = in.nextInt();
 
+                System.out.println("Phone number: ");
+                String phoneNumber = in.nextLine();
+
                 System.out.println("Special comments: ");
                 String comments = in.nextLine();
 
                 System.out.println();
 
-                Booking booking = new Booking(d, t, nameString, numberOfGuests, comments);
+                Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
                 calendar.add(booking);
 
                 System.out.println(booking);

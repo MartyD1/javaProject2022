@@ -9,13 +9,15 @@ public class Booking {
     private BookingTime time;
     private String name;
     private int numberOfPeople;
+    private String phoneNumber;
     private String comments;
 
-    public Booking(BookingDate date, BookingTime time, String name, int numberOfPeople, String comments) {
+    public Booking(BookingDate date, BookingTime time, String name, int numberOfPeople, String phoneNumber, String comments) {
         this.date = date;
         this.time = time;
         this.name = name;
         this.numberOfPeople = numberOfPeople;
+        this.phoneNumber = phoneNumber;
         this.comments = comments;
     }
 
@@ -30,6 +32,9 @@ public class Booking {
     }
     public int getNumberOfPeople() {
         return numberOfPeople;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
     public String getComments() {
         return comments;
@@ -47,9 +52,11 @@ public class Booking {
                 Time: %s
                 Name: %s
                 Size: %d
+                Phone number: %s
                 Special requests: %s
                 """,
                 getDate().toString(), getTime().toString(),
-                getName(), getNumberOfPeople(), getComments());
+                getName(), getNumberOfPeople(), getPhoneNumber(),
+                getComments());
     }
 }
