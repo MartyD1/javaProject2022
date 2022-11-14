@@ -1,3 +1,5 @@
+package ReservationSystem;
+
 /**
  * Class to create a booking object
  */

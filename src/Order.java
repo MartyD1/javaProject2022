@@ -17,12 +17,7 @@ public class Order{
     }
 
     public void removeDinner(Meal m){
-        for(int i=0;i<dinners.size();i++){
-            if(dinners.get(i).getName()==m.getName() &&
-                    dinners.get(i).getPrice()==m.getPrice() &&
-                    dinners.get(i).getDescr()==m.getDescr()
-            )
-                dinners.remove(i);}
+        dinners.remove(m);
     }
 
     public void cancelDinners(){

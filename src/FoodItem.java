@@ -3,11 +3,44 @@ public class FoodItem {
     private final static char main = 'M';
     private final static char starter = 'S';
     private final static char dessert = 'D';
+    private final static char beverage='B';
 
     private char type;
     private String name;
     private String description;
     private double price;
+
+
+    /* Enumerated values are useful to store variables that dont change
+    * Could use similar methods for the status of the food
+    * EG: RECIEVED, PREPARING, READY
+    * https://www.baeldung.com/a-guide-to-java-enums */
+
+    public enum Allergens{
+        CEREALS("C"),
+        CRUSTACEANS("CR"),
+        EGGS("E"),
+        FISH("F"),
+        PEANUTS("PN"),
+        SOYBEANS("SB"),
+        MILK("M"),
+        NUTS("N"),
+        MUSTARD("MU"),
+        SESAME_SEEDS("SS"),
+        SULPHUR_DIOXIDE("SD"),
+        LUPIN("L"),
+        MOLLUSCS("MO");
+
+
+        public final String allergenCode;
+
+        private Allergens(String allergenCode){
+            this.allergenCode = allergenCode;
+
+        }
+
+    }
+
 
 
     public FoodItem(char type, String name, String description, double price){
@@ -55,6 +88,13 @@ public class FoodItem {
         this.price = price;
     }
 
+
+    //override toString method
+    @Override
+    public String toString() {
+        return String.format("\n%s: %s\n%s: %s\n%s: %s\n%s: %.2f\n\n", "Type", getType(),
+                "Name", getName(), "Description", getDescription(), "Price", getPrice());
+    }
 
 
 }

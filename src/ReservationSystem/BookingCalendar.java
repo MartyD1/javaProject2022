@@ -1,3 +1,5 @@
+package ReservationSystem;
+
 import java.util.ArrayList;
 
 public class BookingCalendar  {
@@ -14,7 +16,7 @@ public class BookingCalendar  {
     }
 
 
-    public Booking[] getBookingsForDay(BookingDate day) {
+    public ArrayList<Booking> getBookingsForDay(BookingDate day) {
         ArrayList<Booking> bookingsForDay = new ArrayList<>(); //new ArrayList created to store bookings for the day
 
         for (int i = 0; i < bookings.size(); i++) {            //iterating through ArrayList that holds bookings
@@ -24,8 +26,10 @@ public class BookingCalendar  {
                 bookingsForDay.add(bookings.get(i));           //if condition is satisfied, add Booking object to bookingsForDay
             }
         }
-        Booking[] bookingsForDayArray = new Booking[bookingsForDay.size()]; //array of Booking objects with required date
-        bookingsForDay.toArray(bookingsForDayArray);
-        return bookingsForDayArray;
+        return bookingsForDay;
+    }
+
+    public void cancel(Booking c) {
+        bookings.remove(c);
     }
 }

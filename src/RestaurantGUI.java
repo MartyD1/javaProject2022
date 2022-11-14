@@ -1,22 +1,22 @@
-import java.awt.Graphics2D;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.*;
 
 public class RestaurantGUI extends JPanel {
-// Declaring constants for restaurant layout
-    private final int screenWidth = 3000;
-    private final int screenLength = 2000;
-    //Declaring instance variables for restaurant tables
-    private  int tablewidth = 150;
-    private  int tablelength = 100;
-    //Declaring instance variables for x and y pos
-    private int xPos=100;
-    private int yPos=100;
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+// Declaring constants for restaurant layout
+      int screenWidth = 3000;
+      int screenLength = 2000;
+        //Declaring instance variables for restaurant tables
+       int tablewidth = 150;
+    int tablelength = 100;
+        //Declaring instance variables for x and y pos
+       int xPos=100;
+        int yPos=100;
 
 
         // background
@@ -26,7 +26,6 @@ public class RestaurantGUI extends JPanel {
         //tables
         for(int i=1; i<=12;i++) {
             JButton table = new JButton("Table" + i);
-            table = new JButton("Table" + i);
             if(i<5) {
                table.setBounds(xPos * i *3, yPos, tablewidth, tablelength);
             }
@@ -50,7 +49,7 @@ public class RestaurantGUI extends JPanel {
 
     }
 
-    public static void main(String args[]){
+    public static void main(String[] args){
         JFrame frame = new JFrame("RestaurantGUI");
 
        RestaurantGUI layoutPanel= new RestaurantGUI();

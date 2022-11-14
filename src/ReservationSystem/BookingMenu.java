@@ -1,3 +1,6 @@
+package ReservationSystem;
+
+import java.awt.print.Book;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -49,7 +52,16 @@ public class BookingMenu {
 
             }
             else if (command.equals("C")) {
+                System.out.println("\nEnter booking details to cancel: ");
+                System.out.println("""
+                                    Enter date:
+                                    (yyyy-mm-dd)""");
+                String line = in.nextLine();
+                BookingDate cancelDate = new BookingDate(line);
 
+                Booking cancelBooking = getChoice(calendar.getBookingsForDay(cancelDate));
+                if (cancelBooking != null)
+                    calendar.cancel(cancelBooking);
             }
             else if (command.equals("S")) {
                 System.out.println("""
@@ -65,6 +77,21 @@ public class BookingMenu {
             else if (command.equals("Q")) {
                 cont = false;
             }
+        }
+    }
+
+    private Booking getChoice(ArrayList<Booking> choices) {
+        if (choices.size() == 0) return null;
+        while (true) {
+            char c = 'A';
+            for (Booking choice : choices) {
+                System.out.println(c + ") \n" + choice.toString());
+                c++;
+            }
+            String input = in.nextLine();
+            int n = input.toUpperCase().charAt(0) - 'A';
+            if (0 <= n && n < choices.size())
+                return choices.get(n);
         }
     }
 }
