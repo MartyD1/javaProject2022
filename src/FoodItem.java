@@ -11,6 +11,38 @@ public class FoodItem {
     private double price;
 
 
+    /* Enumerated values are useful to store variables that dont change
+    * Could use similar methods for the status of the food
+    * EG: RECIEVED, PREPARING, READY
+    * https://www.baeldung.com/a-guide-to-java-enums */
+
+    public enum Allergens{
+        CEREALS("C"),
+        CRUSTACEANS("CR"),
+        EGGS("E"),
+        FISH("F"),
+        PEANUTS("PN"),
+        SOYBEANS("SB"),
+        MILK("M"),
+        NUTS("N"),
+        MUSTARD("MU"),
+        SESAME_SEEDS("SS"),
+        SULPHUR_DIOXIDE("SD"),
+        LUPIN("L"),
+        MOLLUSCS("MO");
+
+
+        public final String alergenCode;
+
+        private final(String allergenCode){
+            this.allergenCode = allergenCode;
+
+        }
+
+    }
+
+
+
     public FoodItem(char type, String name, String description, double price){
 
         this.type = type;
