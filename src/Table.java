@@ -1,6 +1,8 @@
+import java.util.ArrayList;
+
 public class Table{
     //private boolean tablePaid=false;
-    //private boolean tableCancelled=false;
+    private boolean orderCancelled=false;
     private double tips;
     private String tableName;
 
@@ -27,6 +29,8 @@ public class Table{
 
     public void cancelOrder(){
         order.cancelDinners();
+
+        orderCancelled=true;
     }
 
     public double tableBill(){
@@ -43,9 +47,12 @@ public class Table{
 
     public String toString(){
         String str="";
-        str+="-  Table Name: "+tableName+", Final Bill: "+tableBill()+
-                ", Tips: "+tips;
-        str+="\nOrder:\n\n"+order.toString();
+        if(!orderCancelled){
+            str+="-  Table Name: "+tableName+", Final Bill: "+tableBill()+
+                    ", Tips: "+tips;
+            str+="\nOrder:\n\n"+order.toString();}
+        else
+            str+="-  Table Name: "+tableName+"\nOrder Cancelled.";
         return str;
     }
 
