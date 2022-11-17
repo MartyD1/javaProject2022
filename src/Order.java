@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 public class Order{
     private final String[] status={"S","M","D"};
@@ -17,7 +18,12 @@ public class Order{
     }
 
     public void removeDinner(Meal m){
-        dinners.remove(m);
+        for(int i=0;i<dinners.size();i++){
+            if(dinners.get(i).getMealName()==m.getMealName() &&
+                    dinners.get(i).getPrice()==m.getPrice() &&
+                    dinners.get(i).getDescr()==m.getDescr()
+            )
+                dinners.remove(i);}
     }
 
     public void cancelDinners(){

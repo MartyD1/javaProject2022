@@ -38,17 +38,14 @@ public class BookingMenu {
                 String nameString = in.nextLine();
 
                 System.out.println("Number of guests: ");
-                String numberOfGuests = in.nextLine();
-
-                System.out.println("Phone number: ");
-                String phoneNumber = in.nextLine();
+                int numberOfGuests = in.nextInt();
 
                 System.out.println("Special comments: ");
                 String comments = in.nextLine();
 
                 System.out.println();
 
-                Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
+                Booking booking = new Booking(d, t, nameString, numberOfGuests, comments);
                 calendar.add(booking);
 
                 System.out.println(booking);
@@ -98,3 +95,6 @@ public class BookingMenu {
         }
     }
 }
+
+
+
