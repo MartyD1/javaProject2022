@@ -8,11 +8,11 @@ public class Booking {
     private BookingDate date;
     private BookingTime time;
     private String name;
-    private int numberOfPeople;
+    private String numberOfPeople;
     private String phoneNumber;
     private String comments;
 
-    public Booking(BookingDate date, BookingTime time, String name, int numberOfPeople, String phoneNumber, String comments) {
+    public Booking(BookingDate date, BookingTime time, String name, String numberOfPeople, String phoneNumber, String comments) {
         this.date = date;
         this.time = time;
         this.name = name;
@@ -30,7 +30,7 @@ public class Booking {
     public String getName() {
         return name;
     }
-    public int getNumberOfPeople() {
+    public String getNumberOfPeople() {
         return numberOfPeople;
     }
     public String getPhoneNumber() {
@@ -51,7 +51,7 @@ public class Booking {
                 Date: %s
                 Time: %s
                 Name: %s
-                Size: %d
+                Size: %s
                 Phone number: %s
                 Special requests: %s
                 """,

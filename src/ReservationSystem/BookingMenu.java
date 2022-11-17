@@ -38,7 +38,7 @@ public class BookingMenu {
                 String nameString = in.nextLine();
 
                 System.out.println("Number of guests: ");
-                int numberOfGuests = in.nextInt();
+                String numberOfGuests = in.nextLine();
 
                 System.out.println("Phone number: ");
                 String phoneNumber = in.nextLine();
@@ -98,6 +98,3 @@ public class BookingMenu {
         }
     }
 }
-
-
-
