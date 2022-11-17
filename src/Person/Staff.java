@@ -1,3 +1,5 @@
+package Person;
+
 public class Staff extends Person{
 
     private String loginDetails; // two datafields for login system

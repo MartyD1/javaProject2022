@@ -1,3 +1,5 @@
+package Person;
+
 import ReservationSystem.Booking;
 
 public class Customer extends Person {
