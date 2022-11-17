@@ -1,7 +1,17 @@
-public class Customer extends Person{
+import ReservationSystem.Booking;
 
-    public Customer(String name, String role){
+public class Customer extends Person {
+
+    private Booking booking;
+
+    public Customer(String name, String role, Booking booking){
         super(name, role);
+        this.booking = booking;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s,\nBooking details: %s", super.toString(), this.booking.toString());
     }
 
 
