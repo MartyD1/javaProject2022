@@ -1,16 +1,26 @@
 public class Staff extends Person{
-    String name;
 
-    public Staff(String name){
-        super(name);
-        this.name=name;
-    }
+    private String loginDetails; // two datafields for login system
+    private String password;
 
-    public void order(){
+    public Staff(String name, String role){
+        super(name, role);
 
     }
 
-    public void changeStatus(){
+    public String getLoginDetails() {
+        return loginDetails;
+    }
 
+    public void setLoginDetails(String loginDetails) {
+        this.loginDetails = loginDetails;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
