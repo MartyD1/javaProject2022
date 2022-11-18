@@ -1,59 +1,19 @@
-import java.util.ArrayList;
+public class Table {
 
-public class Table{
-    //private boolean tablePaid=false;
-    private boolean orderCancelled=false;
-    private double tips;
-    private String tableName;
 
-    private Order order;
+    private static int tableNumber;
+    private int numOfSeats;
 
-    public Table(String bookingName){
-        this.tableName=bookingName;
 
-        order=new Order();
-
-    }//booking a table in advance is to do with schedule not table class
-
-    public void setTips(double tips){
-        this.tips=tips;
+    //create a table
+    public Table(int tableNumber,int numOfSeats){
+        this.tableNumber=tableNumber;
+        this.numOfSeats=numOfSeats;
     }
 
-    public void addMeal(Meal m){
-        order.addDinner(m);
+
+    //get a table number
+    public static int getTableNumber() {
+        return tableNumber;
     }
-
-    public void removeMeal(Meal m){
-        order.removeDinner(m);
-    }
-
-    public void cancelOrder(){
-        order.cancelDinners();
-
-        orderCancelled=true;
-    }
-
-    public double tableBill(){
-        return order.orderPrice();
-    }
-
-    // public void changeTableMeal(int mealNum){ //Purpose?
-    // order.changeStatus(mealNum);
-    // }
-
-    // public void nextMealNum(){
-    // order.nextMealNum();
-
-
-    public String toString(){
-        String str="";
-        if(!orderCancelled){
-            str+="-  Table Name: "+tableName+", Final Bill: "+tableBill()+
-                    ", Tips: "+tips;
-            str+="\nOrder:\n\n"+order.toString();}
-        else
-            str+="-  Table Name: "+tableName+"\nOrder Cancelled.";
-        return str;
-    }
-
 }

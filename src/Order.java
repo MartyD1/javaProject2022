@@ -1,58 +1,62 @@
 import java.util.ArrayList;
-import java.util.List;
 
-public class Order{
-    private final String[] status={"S","M","D"};
-    int orderNum=0;
-    private String mealStatus=status[ orderNum ];
-    private boolean orderCancelled=false;
+public class Order {
 
-    private ArrayList <Meal> dinners;
 
-    public Order(){
-        dinners=new ArrayList<Meal>();
+ // Arraylist orders to hold ordered items of type FoodItem
+  private ArrayList<FoodItem> Orders;
+
+
+
+
+    //Creating an Order for a table
+    public Order(Table table){
+
+        Orders = new ArrayList<>();
+
+    }
+    // add to order using index of item from menuItems
+    public void addToOrder(int itemIndex) {
+        FoodItem m = Menu.getMenu().get(itemIndex);
+        Orders.add(m);
     }
 
-    public void addDinner(Meal m){
-        dinners.add(m);
+    //remove from order using index of item from menuItems
+    public void removeFromOrder(int itemIndex) {
+        FoodItem m = Menu.getMenu().get(itemIndex);
+        Orders.remove(m);}
+
+    //cancel orders using order object name
+    public void cancelOrder(){
+        Orders.clear();}
+
+    //get price of order by iterating through order array and getting price of each item
+    public double getOrderPrice( ){
+        double sum=0;
+        for(int i=0;i<Orders.size();i++){
+            sum=Orders.get(i).getPrice() + sum;
+        }
+        return sum;
     }
 
-    public void removeDinner(Meal m){
-        for(int i=0;i<dinners.size();i++){
-            if(dinners.get(i).getMealName()==m.getMealName() &&
-                    dinners.get(i).getPrice()==m.getPrice() &&
-                    dinners.get(i).getDescr()==m.getDescr()
-            )
-                dinners.remove(i);}
+
+//to string
+    @Override
+    public String  toString(){
+       return String.format("\n%s: %s\n%s: %s\n%s: %.2f\n","Table Number",Table.getTableNumber(),"Order",Orders,"Total Price",getOrderPrice());
     }
 
-    public void cancelDinners(){
-        dinners.clear();
-    }
-
-    public double orderPrice(){   //This is for Table
-        int value=0;
-        for(int i=0;i<dinners.size();i++){
-            value+=dinners.get(i).getPrice();}
-        return value;
-    }
-
-    // public void changeStatus(int mealNum){ //Whats this for?
-    // orderNum=mealNum;
-    // mealStatus=status[orderNum];
-
-    // }
-
-    // public void nextMealNum(){
-    // orderNum++;
-    // mealStatus=status[orderNum];
-    // }
 
 
-    public String toString(){
-        String str="";
-        for(int i=0;i<dinners.size();i++)
-            str+=dinners.get(i).toString()+"\n\n";;
-        return str;
-    }
+
+
+
+
+
 }
+
+
+
+
+
+
