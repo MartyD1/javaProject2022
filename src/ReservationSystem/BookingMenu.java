@@ -1,8 +1,11 @@
 package ReservationSystem;
 
 import java.awt.print.Book;
+import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
+
+import static ReservationSystem.BookingsCSV.createBookingsCSV;
 
 public class BookingMenu {
     private Scanner in; // takes user input
@@ -14,7 +17,7 @@ public class BookingMenu {
         in = new Scanner(System.in); // creates new Scanner object (keyboard)
     }
 
-    public void run() {
+    public void run() throws IOException {
         boolean cont = true;
         BookingCalendar calendar = new BookingCalendar();
         while (cont) {
@@ -50,9 +53,6 @@ public class BookingMenu {
 
                 Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
                 calendar.add(booking);
-
-                System.out.println(booking);
-
             }
             else if (command.equals("C")) {
                 System.out.println("\nEnter booking details to cancel: ");
@@ -78,6 +78,8 @@ public class BookingMenu {
                 }
             }
             else if (command.equals("Q")) {
+                createBookingsCSV(calendar); // Creating CSV file before system shuts down
+
                 cont = false;
             }
         }

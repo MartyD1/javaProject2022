@@ -1,44 +1,21 @@
 package ReservationSystem;
 
-
 import java.io.*;
 
-public class BookingsCSV implements Serializable {
+public class BookingsCSV {
 
 
 
-        public static void createBookingsCSV(Booking booking) throws IOException {
-
-            /* Example code for basic CSV file creation */
-//        FileWriter csvWriter = new FileWriter("BookingRecords.csv");
-//        csvWriter.append("Date");
-//        csvWriter.append(",");
-//        csvWriter.append("Time");
-//        csvWriter.append(",");
-//        csvWriter.append("Name");
-//        csvWriter.append(",");
-//        csvWriter.append("Party size");
-//        csvWriter.append(",");
-//        csvWriter.append("Contact details");
-//        csvWriter.append(",");
-//        csvWriter.append("Comments");
-//        csvWriter.append("\n");
-//        for (Booking booking : bookings.getBookings()) {
-//
-//
-//            csvWriter.append(String.join(",", booking.toString()));
-//            csvWriter.append("\n");
-//        }
-//        csvWriter.flush();
-//        csvWriter.close();
-//    }
-
-
+        public static void createBookingsCSV(BookingCalendar calendar) throws IOException {
             /* First attempt at writing objects to a CSV file */
-        FileOutputStream csvWriter = new FileOutputStream("BookingRecords.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(csvWriter);
+        FileOutputStream fout = new FileOutputStream("BookingRecords.txt");
+        ObjectOutputStream oos = new ObjectOutputStream(fout);
 
-        oos.writeObject(booking);
+        for(Booking booking : calendar.getBookings()) {
+            oos.writeObject(booking);
+        }
+        oos.flush();
+        oos.close();
     }
 
 

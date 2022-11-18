@@ -15,6 +15,9 @@ public class BookingCalendar  {
         this.bookings.add(booking);
     }
 
+    public ArrayList<Booking> getBookings() {
+        return bookings;
+    }
 
     public ArrayList<Booking> getBookingsForDay(BookingDate day) {
         ArrayList<Booking> bookingsForDay = new ArrayList<>(); //new ArrayList created to store bookings for the day

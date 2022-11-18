@@ -1,13 +1,12 @@
 package Person;
 
-public class Staff extends Person{
+public class Staff extends Person {
 
     private String loginDetails; // two datafields for login system
     private String password;
 
     public Staff(String name, String role){
         super(name, role);
-
     }
 
     public String getLoginDetails() {
