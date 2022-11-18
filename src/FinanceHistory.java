@@ -4,14 +4,14 @@ import java.util.Scanner;
 public class FinanceHistory {
     private Scanner input;
 
-    public static void main(String args[]) throws IOException {
-
-       FinanceHistory files = new FinanceHistory(); //object of this class
-
-
-        //file.readString();
-        files.writeFile();
-    }
+//    public static void main(String args[]) throws IOException { //commented as push was rejected due to main
+//
+//       FinanceHistory files = new FinanceHistory(); //object of this class
+//
+//
+//        //file.readString();
+//        files.writeFile();
+//    }
 
     public void readString(String str){
      String[] array=str.split("Order:");
