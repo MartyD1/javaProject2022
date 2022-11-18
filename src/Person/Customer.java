@@ -6,7 +6,7 @@ public class Customer extends Person {
 
     private Booking booking;
 
-    public Customer(String name, String role, Booking booking){
+    public Customer(String name, String role, Booking booking) {
         super(name, role);
         this.booking = booking;
     }

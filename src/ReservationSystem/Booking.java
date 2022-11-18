@@ -1,9 +1,11 @@
 package ReservationSystem;
 
+import java.io.Serializable;
+
 /**
  * Class to create a booking object
  */
-public class Booking {
+public class Booking implements Serializable {
 
     private BookingDate date;
     private BookingTime time;

@@ -1,12 +1,13 @@
 package ReservationSystem;
 
+import java.io.Serializable;
 import java.util.StringTokenizer; //StringTokenizer splits a String into separate tokens
 
 /**
  * Class to construct a BookingDate object that stores the day, month and year of the booking
  */
 
-public class BookingDate {
+public class BookingDate implements Serializable {
 
     private int year;
     private int month;

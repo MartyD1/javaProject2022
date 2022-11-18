@@ -1,44 +1,58 @@
 package ReservationSystem;
 
-
 import java.io.*;
 
-public class BookingsCSV implements Serializable {
+public class BookingsCSV {
 
+    public static void createBookingsCSV(BookingCalendar calendar) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("bookingsRecord.csv"), "UTF-8"));
 
+            bw.write("Date, Time, Name, Group size, Phone number, Comments");
+            bw.newLine();
 
-        public static void createBookingsCSV(Booking booking) throws IOException {
+            for (Booking booking : calendar.getBookings()) {
+                StringBuffer line = new StringBuffer();
+                line.append(booking.getDate());
+                line.append(", ");
+                line.append(booking.getTime());
+                line.append(", ");
+                line.append(booking.getName());
+                line.append(", ");
+                line.append(booking.getNumberOfPeople());
+                line.append(", ");
+                line.append(booking.getPhoneNumber());
+                line.append(", ");
+                line.append(booking.getComments());
 
-            /* Example code for basic CSV file creation */
-//        FileWriter csvWriter = new FileWriter("BookingRecords.csv");
-//        csvWriter.append("Date");
-//        csvWriter.append(",");
-//        csvWriter.append("Time");
-//        csvWriter.append(",");
-//        csvWriter.append("Name");
-//        csvWriter.append(",");
-//        csvWriter.append("Party size");
-//        csvWriter.append(",");
-//        csvWriter.append("Contact details");
-//        csvWriter.append(",");
-//        csvWriter.append("Comments");
-//        csvWriter.append("\n");
-//        for (Booking booking : bookings.getBookings()) {
-//
-//
-//            csvWriter.append(String.join(",", booking.toString()));
-//            csvWriter.append("\n");
-//        }
-//        csvWriter.flush();
-//        csvWriter.close();
-//    }
+                bw.write(line.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        } catch (UnsupportedEncodingException e) {
+            System.out.print(e);
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 
+    public static void readBookingsCSV() {
+        try {
+            String path = "bookingsRecord.csv";
+            String line = "";
 
-            /* First attempt at writing objects to a CSV file */
-        FileOutputStream csvWriter = new FileOutputStream("BookingRecords.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(csvWriter);
-
-        oos.writeObject(booking);
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            while ((line = br.readLine()) != null ) {
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e ) {
+            System.out.println(e);
+        }
     }
 
 
@@ -62,5 +76,6 @@ public class BookingsCSV implements Serializable {
         return finalString.toString();
     }
 }
+
 
 

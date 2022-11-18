@@ -1,11 +1,12 @@
 package ReservationSystem;
 
+import java.io.Serializable;
 import java.util.StringTokenizer;
 
 /**
  * Class to construct a BookingTime object to store when in the day the booking takes place
  */
-public class BookingTime {
+public class BookingTime implements Serializable {
     private int hours;
     private int minutes;
 
