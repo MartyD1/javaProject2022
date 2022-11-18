@@ -1,10 +1,5 @@
 public class FoodItem {
 
-    private final static char main = 'M';
-    private final static char starter = 'S';
-    private final static char dessert = 'D';
-    private final static char beverage='B';
-
     private char type;
     private String name;
     private String description;

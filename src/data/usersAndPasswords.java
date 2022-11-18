@@ -1,3 +1,5 @@
+package data;
+
 import java.util.HashMap;
 
 /* This class will store usernames and passwords in pairs using a hashmap*/
