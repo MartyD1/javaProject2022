@@ -63,11 +63,36 @@ public class Login {
     }
 
     private void staffMenu() {
-        System.out.println("Options A B C");
+        System.out.println("(M)anagement, (R)eservations, (F)ood");
+        String staffMenu = scan.nextLine().toUpperCase();
+        switch(staffMenu){
+            case("M"):
+                System.out.println("Work in progress");
+                break;
+            case("R"):
+                System.out.println("Work in progress");
+                break;
+            case("F"):
+                System.out.println("Work in progress");
+                break;
+        }
     }
 
     void GuestLogin(){
         System.out.println("Welcome Guest.");
         System.out.println("(B)ook a reservation, (V)iew menu, (P)ay a bill");
+        String guestIn = scan.nextLine().toUpperCase();
+        switch(guestIn){
+            case("B"):
+                System.out.println("Enter date in format DD/MM/YY");
+                System.out.println("Work in progress");
+                break;
+            case("V"):
+                System.out.println("work in progress");
+                break;
+            case("P"):
+                System.out.println("wip");
+                break;
+        }
     }
 }
