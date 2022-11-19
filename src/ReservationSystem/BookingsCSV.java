@@ -4,18 +4,55 @@ import java.io.*;
 
 public class BookingsCSV {
 
+    public static void createBookingsCSV(BookingCalendar calendar) {
+        try {
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("bookingsRecord.csv"), "UTF-8"));
 
+            bw.write("Date, Time, Name, Group size, Phone number, Comments");
+            bw.newLine();
 
-        public static void createBookingsCSV(BookingCalendar calendar) throws IOException {
-            /* First attempt at writing objects to a CSV file */
-        FileOutputStream fout = new FileOutputStream("BookingRecords.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(fout);
+            for (Booking booking : calendar.getBookings()) {
+                StringBuffer line = new StringBuffer();
+                line.append(booking.getDate());
+                line.append(", ");
+                line.append(booking.getTime());
+                line.append(", ");
+                line.append(booking.getName());
+                line.append(", ");
+                line.append(booking.getNumberOfPeople());
+                line.append(", ");
+                line.append(booking.getPhoneNumber());
+                line.append(", ");
+                line.append(booking.getComments());
 
-        for(Booking booking : calendar.getBookings()) {
-            oos.writeObject(booking);
+                bw.write(line.toString());
+                bw.newLine();
+            }
+            bw.flush();
+            bw.close();
+        } catch (UnsupportedEncodingException e) {
+            System.out.print(e);
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        oos.flush();
-        oos.close();
+    }
+
+    public static void readBookingsCSV() {
+        try {
+            String path = "bookingsRecord.csv";
+            String line = "";
+
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            while ((line = br.readLine()) != null ) {
+                System.out.println(line);
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        } catch (IOException e ) {
+            System.out.println(e);
+        }
     }
 
 
@@ -39,5 +76,6 @@ public class BookingsCSV {
         return finalString.toString();
     }
 }
+
 
 

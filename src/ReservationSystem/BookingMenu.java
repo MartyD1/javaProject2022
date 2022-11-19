@@ -6,6 +6,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 import static ReservationSystem.BookingsCSV.createBookingsCSV;
+import static ReservationSystem.BookingsCSV.readBookingsCSV;
 
 public class BookingMenu {
     private Scanner in; // takes user input
@@ -67,15 +68,18 @@ public class BookingMenu {
                     calendar.cancel(cancelBooking);
             }
             else if (command.equals("S")) {
-                System.out.println("""
-                                    Display what date:
-                                    (yyyy-mm-dd)""");
-                String showDate = in.nextLine();
-                BookingDate day = new BookingDate(showDate);
+                readBookingsCSV();
 
-                for (Booking booking : calendar.getBookingsForDay(day)) {
-                    System.out.println(booking.toString());
-                }
+                /* commented out to test CSV.... not sure if fully needed anymore */
+//                System.out.println("""
+//                                    Display what date:
+//                                    (yyyy-mm-dd)""");
+//                String showDate = in.nextLine();
+//                BookingDate day = new BookingDate(showDate);
+//
+//                for (Booking booking : calendar.getBookingsForDay(day)) {
+//                    System.out.println(booking.toString());
+//                }
             }
             else if (command.equals("Q")) {
                 createBookingsCSV(calendar); // Creating CSV file before system shuts down
