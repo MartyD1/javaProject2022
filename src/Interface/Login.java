@@ -9,7 +9,31 @@ public class Login {
     String passField;
     HashMap<String,String> loginInfo = new HashMap<String,String>();
     Scanner scan = new Scanner(System.in);
-    Login(HashMap<String, String> LoginInfoOrg) {
+
+    Login(HashMap loginDetails){
+        System.out.println("Are you a (G)uest, (S)taff, (C)hef");
+        String inputLogin = scan.nextLine();
+        switch(inputLogin){
+            case("G"):
+                GuestLogin();
+                break;
+            case("S"):
+                LoginNow(loginInfo);
+                break;
+            case("C"):
+                chefOptions();
+        }
+
+
+    }
+
+
+    private void chefOptions() {
+        System.out.println("Chef options");
+    }
+
+
+    void LoginNow(HashMap<String, String> LoginInfoOrg) {
         // making a copy of hashmap, globally available
         loginInfo = LoginInfoOrg;
 
@@ -28,5 +52,9 @@ public class Login {
 
         }
 
+    }
+
+    void GuestLogin(){
+        System.out.println("Welcome guest.");
     }
 }
