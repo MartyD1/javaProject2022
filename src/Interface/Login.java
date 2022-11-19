@@ -7,18 +7,18 @@ public class Login {
 
     String userField;
     String passField;
-    HashMap<String,String> loginInfo = new HashMap<String,String>();
+    HashMap<String,String> LoginDetails = new HashMap<String,String>();
     Scanner scan = new Scanner(System.in);
 
     Login(HashMap loginDetails){
         System.out.println("Are you a (G)uest, (S)taff, (C)hef");
-        String inputLogin = scan.nextLine();
+        String inputLogin = scan.nextLine().toUpperCase();
         switch(inputLogin){
             case("G"):
                 GuestLogin();
                 break;
             case("S"):
-                LoginNow(loginInfo);
+                LoginNow(LoginDetails);
                 break;
             case("C"):
                 chefOptions();
@@ -35,26 +35,35 @@ public class Login {
 
     void LoginNow(HashMap<String, String> LoginInfoOrg) {
         // making a copy of hashmap, globally available
-        loginInfo = LoginInfoOrg;
+        LoginDetails = LoginInfoOrg;
 
         System.out.println("Welcome to Cool Restaurant Management System! \nPlease input details \n");
         System.out.println("Enter Username: ");
-        userField = scan.nextLine();
+        userField = scan.nextLine().toUpperCase();
         System.out.println("Enter Password: ");
-        passField = scan.nextLine();
+        passField = scan.nextLine().toUpperCase();
 
-        if(loginInfo.containsKey(userField)){
-            if(loginInfo.get(userField).equals(passField)){
-                System.out.println("Login success.");
-            } else {
-                System.out.println("Wrong credentials.");
+        if(userField.equals("Marty") & passField.equals("Password")){
+            System.out.println("Login Success");
+            System.out.println("Proceed? (Y) / (N)");
+            String descision = scan.nextLine().toUpperCase();
+            switch (descision) {
+                case ("Y") -> staffMenu();
+                case ("N") -> LoginNow(LoginDetails);
             }
-
+        } else {
+            System.out.println("Incorrect Login");
         }
+
 
     }
 
+    private void staffMenu() {
+        System.out.println("Options A B C");
+    }
+
     void GuestLogin(){
-        System.out.println("Welcome guest.");
+
+        System.out.println("Welcome Guest. Options A B C");
     }
 }

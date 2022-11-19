@@ -5,7 +5,7 @@ public class Main {
 
         Account account = new Account();
 
-        Login login = new Login(account.getLoginDetails());
+        Login login = new Login(account.getLoginDetails()); //parameters to recieve password
 
     }
 }
