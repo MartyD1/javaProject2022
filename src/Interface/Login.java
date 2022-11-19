@@ -39,20 +39,24 @@ public class Login {
 
         System.out.println("Welcome to Cool Restaurant Management System! \nPlease input details \n");
         System.out.println("Enter Username: ");
-        userField = scan.nextLine().toUpperCase();
+        userField = scan.nextLine();
         System.out.println("Enter Password: ");
-        passField = scan.nextLine().toUpperCase();
+        passField = scan.nextLine();
 
         if(userField.equals("Marty") & passField.equals("Password")){
             System.out.println("Login Success");
             System.out.println("Proceed? (Y) / (N)");
-            String descision = scan.nextLine().toUpperCase();
-            switch (descision) {
+            String d = scan.nextLine().toUpperCase();
+            switch (d) {
                 case ("Y") -> staffMenu();
-                case ("N") -> LoginNow(LoginDetails);
+                case ("N") -> new Login(LoginDetails); // Method call to original input
             }
         } else {
-            System.out.println("Incorrect Login");
+            System.out.println("Incorrect Login, Return? (Y)");
+            if(scan.nextLine().equals("Y")){
+                new Login(LoginDetails);
+            }
+
         }
 
 
@@ -63,7 +67,7 @@ public class Login {
     }
 
     void GuestLogin(){
-
-        System.out.println("Welcome Guest. Options A B C");
+        System.out.println("Welcome Guest.");
+        System.out.println("(B)ook a reservation, (V)iew menu, (P)ay a bill");
     }
 }
