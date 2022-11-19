@@ -1,6 +1,8 @@
 package ReservationSystem;
 
 import java.io.Serializable;
+import java.security.SecureRandom;
+import java.util.StringTokenizer;
 
 /**
  * Class to create a booking object
@@ -21,6 +23,16 @@ public class Booking implements Serializable {
         this.numberOfPeople = numberOfPeople;
         this.phoneNumber = phoneNumber;
         this.comments = comments;
+    }
+
+    public Booking(String line) {
+        StringTokenizer token = new StringTokenizer(line, ",");
+        this.date = new BookingDate(token.nextToken());
+        this.time = new BookingTime(token.nextToken());
+        this.name = token.nextToken();
+        this.numberOfPeople = token.nextToken();
+        this.phoneNumber = token.nextToken();
+        this.comments = token.nextToken();
     }
 
     public BookingDate getDate() {

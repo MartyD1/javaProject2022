@@ -1,58 +1,88 @@
 package ReservationSystem;
 
 import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class BookingsCSV {
-
-    public static void createBookingsCSV(BookingCalendar calendar) {
+    public static void createBookingsCSV(Booking booking) {
         try {
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("bookingsRecord.csv"), "UTF-8"));
+            File bookingsRecord = new File("bookingsRecord.csv");
+            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(bookingsRecord, true), "UTF-8"));
 
-            bw.write("Date, Time, Name, Group size, Phone number, Comments");
-            bw.newLine();
-
-            for (Booking booking : calendar.getBookings()) {
-                StringBuffer line = new StringBuffer();
-                line.append(booking.getDate());
-                line.append(", ");
-                line.append(booking.getTime());
-                line.append(", ");
-                line.append(booking.getName());
-                line.append(", ");
-                line.append(booking.getNumberOfPeople());
-                line.append(", ");
-                line.append(booking.getPhoneNumber());
-                line.append(", ");
-                line.append(booking.getComments());
-
-                bw.write(line.toString());
+            if (bookingsRecord.length() == 0 ) {
+                bw.write("Date, Time, Name, Group size, Phone number, Comments");
                 bw.newLine();
             }
+            StringBuffer line = new StringBuffer();
+            line.append(booking.getDate());
+            line.append(", ");
+            line.append(booking.getTime());
+            line.append(", ");
+            line.append(booking.getName());
+            line.append(", ");
+            line.append(booking.getNumberOfPeople());
+            line.append(", ");
+            line.append(booking.getPhoneNumber());
+            line.append(", ");
+            line.append(booking.getComments());
+
+            bw.write(line.toString());
+            bw.newLine();
+
             bw.flush();
             bw.close();
         } catch (UnsupportedEncodingException e) {
             System.out.print(e);
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
         } catch (IOException e) {
             System.out.println(e);
         }
     }
 
-    public static void readBookingsCSV() {
+    public static ArrayList<String> readBookingsCSV() {
+        ArrayList<String> rows = new ArrayList<>();
         try {
             String path = "bookingsRecord.csv";
             String line = "";
 
             BufferedReader br = new BufferedReader(new FileReader(path));
-            while ((line = br.readLine()) != null ) {
-                System.out.println(line);
+
+            String headerLine = br.readLine();
+            while ((line = br.readLine()) != null) {
+                rows.add(line);
             }
-        } catch (FileNotFoundException e) {
-            System.out.println(e);
-        } catch (IOException e ) {
+        } catch (IOException e) {
             System.out.println(e);
         }
+        return rows;
+    }
+
+    public static void clearCSV() throws IOException {
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("bookingsRecord.csv", false), "UTF-8"));
+        bw.write("Date, Time, Name, Group size, Phone number, Comments");
+    }
+
+    public static ArrayList<String> getBookingsForDay(String lineDate) {
+        ArrayList<String> bookingsForDay = new ArrayList<>();
+        try {
+            String path = "bookingsRecord.csv";
+            String line = "";
+
+            BufferedReader br = new BufferedReader(new FileReader(path));
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                for (int i = 0; i < data.length; i++) {
+
+                    if (data[i].equals(lineDate)) {
+                        bookingsForDay.add(line);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        return bookingsForDay;
     }
 
 

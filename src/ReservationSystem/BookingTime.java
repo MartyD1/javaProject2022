@@ -17,7 +17,7 @@ public class BookingTime implements Serializable {
 
     BookingTime(String line) {
         StringTokenizer str = new StringTokenizer(line, ":"); //converting String line into separate tokens
-        this.hours = Integer.parseInt(str.nextToken());             //tokens are of type String, int must be parsed
+        this.hours = Integer.parseInt(str.nextToken().trim());             //tokens are of type String, int must be parsed
         this.minutes = Integer.parseInt(str.nextToken());
     }
 

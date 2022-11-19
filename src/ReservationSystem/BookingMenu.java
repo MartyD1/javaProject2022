@@ -2,11 +2,11 @@ package ReservationSystem;
 
 import java.awt.print.Book;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-import static ReservationSystem.BookingsCSV.createBookingsCSV;
-import static ReservationSystem.BookingsCSV.readBookingsCSV;
+import static ReservationSystem.BookingsCSV.*;
 
 public class BookingMenu {
     private Scanner in; // takes user input
@@ -53,6 +53,7 @@ public class BookingMenu {
                 System.out.println();
 
                 Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
+                createBookingsCSV(booking); // added booking to CSV file
                 calendar.add(booking);
             }
             else if (command.equals("C")) {
@@ -60,41 +61,47 @@ public class BookingMenu {
                 System.out.println("""
                                     Enter date:
                                     (yyyy-mm-dd)""");
-                String line = in.nextLine();
-                BookingDate cancelDate = new BookingDate(line);
+                String dateLine = in.nextLine();
 
-                Booking cancelBooking = getChoice(calendar.getBookingsForDay(cancelDate));
-                if (cancelBooking != null)
-                    calendar.cancel(cancelBooking);
+                ArrayList<String> allBookings = readBookingsCSV();
+                ArrayList<String> choices = getBookingsForDay(dateLine);
+
+                String cancelBooking = getChoice(choices);
+                if (cancelBooking != null) {
+                    allBookings.remove(cancelBooking);
+                }
+
+                clearCSV();
+
+                for (int i = 0; i < allBookings.size(); i++) {
+                    Booking tempBooking = new Booking(allBookings.get(i));
+                    createBookingsCSV(tempBooking);
+                }
             }
             else if (command.equals("S")) {
-                readBookingsCSV();
+                /* BookingsForDay now read from CSV file */
+                System.out.println("""
+                                    Display what date:
+                                    (yyyy-mm-dd)""");
+                String showDate = in.nextLine();
+                ArrayList<String> bookingsForDay = getBookingsForDay(showDate);
 
-                /* commented out to test CSV.... not sure if fully needed anymore */
-//                System.out.println("""
-//                                    Display what date:
-//                                    (yyyy-mm-dd)""");
-//                String showDate = in.nextLine();
-//                BookingDate day = new BookingDate(showDate);
-//
-//                for (Booking booking : calendar.getBookingsForDay(day)) {
-//                    System.out.println(booking.toString());
-//                }
+                for (int i = 0; i < bookingsForDay.size(); i++) {
+                    System.out.println(bookingsForDay.get(i));
+                }
             }
             else if (command.equals("Q")) {
-                createBookingsCSV(calendar); // Creating CSV file before system shuts down
-
                 cont = false;
             }
         }
     }
 
-    private Booking getChoice(ArrayList<Booking> choices) {
+    private String getChoice(ArrayList<String> choices) {
         if (choices.size() == 0) return null;
         while (true) {
             char c = 'A';
-            for (Booking choice : choices) {
-                System.out.println(c + ") \n" + choice.toString());
+            for (String choice : choices) {
+                System.out.println(c + ") " + choice);
                 c++;
             }
             String input = in.nextLine();

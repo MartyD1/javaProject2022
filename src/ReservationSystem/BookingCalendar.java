@@ -19,6 +19,7 @@ public class BookingCalendar  {
         return bookings;
     }
 
+    /* Redundant method, bookingsForDay not read from CSV file */
     public ArrayList<Booking> getBookingsForDay(BookingDate day) {
         ArrayList<Booking> bookingsForDay = new ArrayList<>(); //new ArrayList created to store bookings for the day
 
