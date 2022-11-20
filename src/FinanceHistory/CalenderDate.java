@@ -1,4 +1,4 @@
-package FinanceHistory;//
+package FinanceHistory;
 
 public class CalenderDate {
     private int year;
