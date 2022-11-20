@@ -1,6 +1,6 @@
 package FinanceHistory;
 
-public class BookingHistory {
+public class BookingHistory {//
     private String name;
     private CalenderDate day;
     private CalenderTime bookingTime;
