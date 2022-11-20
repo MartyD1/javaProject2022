@@ -1,7 +1,7 @@
 package FinanceHistory;
 
 import java.util.ArrayList;
-public class Calender {//
+public class Calender {
     private ArrayList<BookingHistory> bookings;
 
     public Calender(){
