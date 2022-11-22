@@ -17,11 +17,11 @@ public class MenuCSV extends GeneralCSV {
             }
             StringBuffer line = new StringBuffer();
             line.append(foodItem.getType());
-            line.append(",");
+            line.append(", ");
             line.append(foodItem.getName());
-            line.append(",");
+            line.append(", ");
             line.append(foodItem.getDescription());
-            line.append(",");
+            line.append(", ");
             line.append(foodItem.getPrice());
 
             bw.write(line.toString());

@@ -37,7 +37,7 @@ public class MenuInterface {
                 String description = in.nextLine();
 
                 System.out.println("Enter price: ");
-                double price = in.nextDouble();
+                double price = Double.parseDouble(in.nextLine());
 
                 System.out.println();
 
@@ -47,7 +47,8 @@ public class MenuInterface {
                 menu.addToMenu(newItem);
 
 
-            } else if (command.equals("R")) {
+            }
+            else if (command.equals("R")) {
                 System.out.println("List of menu items");
                 ArrayList<String> menuItems = readCSV("menuRecord.csv");
 
@@ -64,14 +65,17 @@ public class MenuInterface {
                 }
 
 
-            } else if (command.equals("S")) {
+            }
+            else if (command.equals("S")) {
                 ArrayList<String> menuItems = readCSV("menuRecord.csv");
+
                 for (int i = 0; i < menuItems.size(); i++) {
                     System.out.println(menuItems.get(i));
                 }
 
 
-            } else if (command.equals("Q")) {
+            }
+            else if (command.equals("Q")) {
                 cont = false;
             }
         }
