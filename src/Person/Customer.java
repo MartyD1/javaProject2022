@@ -16,6 +16,9 @@ public class Customer extends Person {
         return String.format("%s,\nBooking details: %s", super.toString(), this.booking.toString());
     }
 
+    public Booking getBooking() {
+        return booking;
+    }
 
     /*
     These methods do not need to be here.
