@@ -4,6 +4,7 @@ import Person.Owner;
 import Person.Staff;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Restaurant {
 
@@ -35,10 +36,5 @@ public class Restaurant {
     //remove table
     public void removeTable(Table table){
         tables.remove(table);}
-
-
-
-
-
 
 }
