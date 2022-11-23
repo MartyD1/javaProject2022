@@ -16,7 +16,7 @@ public class StaffMenu {
 
     public StaffMenu() { in = new Scanner(System.in); }
 
-    public void run() throws IOException {
+    public void StaffRun() throws IOException {
         boolean cont = true;
 
         while (cont) {
