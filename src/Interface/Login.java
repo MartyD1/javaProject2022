@@ -1,13 +1,20 @@
 package Interface;
 
 import Person.Owner;
+import ReservationSystem.Booking;
+import ReservationSystem.BookingDate;
+import ReservationSystem.BookingTime;
 import RestaurantSystem.Menu;
 import RestaurantSystem.Restaurant;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Login {
+import static CSV.GeneralCSV.readCSV;
+import static ReservationSystem.BookingsCSV.createBookingsCSV;
 
+public class Login {
+    private Scanner in;
     String userField;
     String passField;
 
@@ -117,15 +124,55 @@ public class Login {
         String guestIn = scan.nextLine().toUpperCase();
         switch(guestIn){
             case("B"):
-                System.out.println("Enter date in format DD/MM/YY");
-                System.out.println("Work in progress");
+                addBooking();
                 break;
             case("V"):
-                System.out.println("work in progress");
+                showMenu();
                 break;
             case("P"):
                 System.out.println("wip");
                 break;
+        }
+    }
+
+    private void addBooking() {
+        in = new Scanner(System.in);
+
+        System.out.println("""
+                           Date of booking
+                           (yyyy-mm-dd)""");
+        String dateString = in.nextLine();
+        BookingDate d = new BookingDate(dateString);
+
+        System.out.println("""
+                           Time of booking
+                           (hh:mm)""");
+        String timeString = in.nextLine();
+        BookingTime t = new BookingTime(timeString);
+
+        System.out.println("Name of booking: "); // name could be changed to use getName() method of Customer object down the line
+        String nameString = in.nextLine();
+
+        System.out.println("Number of guests: ");
+        String numberOfGuests = in.nextLine();
+
+        System.out.println("Phone number: ");
+        String phoneNumber = in.nextLine();
+
+        System.out.println("Special comments: ");
+        String comments = in.nextLine();
+
+        System.out.println();
+
+        Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
+        createBookingsCSV(booking); // added booking to CSV file
+    }
+
+    private void showMenu() {
+        ArrayList<String> menuItems = readCSV("menuRecord.csv");
+
+        for (int i = 0; i < menuItems.size(); i++) {
+            System.out.println(menuItems.get(i));
         }
     }
 }
