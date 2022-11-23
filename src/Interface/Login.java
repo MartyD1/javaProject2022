@@ -7,10 +7,9 @@ public class Login {
 
     String userField;
     String passField;
-    HashMap<String,String> LoginDetails = new HashMap<String,String>();
     Scanner scan = new Scanner(System.in);
 
-    Login(HashMap loginDetails){
+    Login(){
         System.out.println("Are you a (G)uest, (S)taff, (C)hef");
         String inputLogin = scan.nextLine().toUpperCase();
         switch(inputLogin){
@@ -18,7 +17,7 @@ public class Login {
                 GuestLogin();
                 break;
             case("S"):
-                LoginNow(LoginDetails);
+                LoginNow();
                 break;
             case("C"):
                 chefOptions();
@@ -33,9 +32,8 @@ public class Login {
     }
 
 
-    void LoginNow(HashMap<String, String> LoginInfoOrg) {
+    void LoginNow() {
         // making a copy of hashmap, globally available
-        LoginDetails = LoginInfoOrg;
 
         System.out.println("Welcome to Cool Restaurant Management System! \nPlease input details \n");
         System.out.println("Enter Username: ");
@@ -49,12 +47,12 @@ public class Login {
             String d = scan.nextLine().toUpperCase();
             switch (d) {
                 case ("Y") -> staffMenu();
-                case ("N") -> new Login(LoginDetails); // Method call to original input
+                case ("N") -> new Login(); // Method call to original input
             }
         } else {
             System.out.println("Incorrect Login, Return? (Y)");
             if(scan.nextLine().equals("Y")){
-                new Login(LoginDetails);
+                new Login();
             }
 
         }
