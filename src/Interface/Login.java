@@ -4,7 +4,6 @@ import Person.Owner;
 import RestaurantSystem.Menu;
 import RestaurantSystem.Restaurant;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Login {
@@ -29,6 +28,7 @@ public class Login {
 
         } else if (userField.equals("Staff") && (passField.equals("Password"))) {
             staffMenu();
+
         } else if (userField.equals("Management") && (passField.equals("Password"))) {
             managementOptions();
 
@@ -42,7 +42,14 @@ public class Login {
     }
 
     private void managementOptions() {
+        System.out.println("(M)anage employees, (V)iew records");
+        String input = scan.nextLine().toUpperCase();
+        switch(input){
+            case("M"):
+
+        }
     }
+
 
     void restaurantMenu(){
         System.out.println("Would you like to (C)reate restaurants, (V)iew restaurants?");
