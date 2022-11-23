@@ -14,6 +14,20 @@ public class Staff extends Person {
 
     public String getRole() {
         return role;
+    public Staff(String name, String role, String loginDetails, String password){
+        super(name, role);
+        this.loginDetails = loginDetails;
+        this.password = password;
+    }
+
+    public Staff(String line) {
+        super(line);
+
+        StringTokenizer token = new StringTokenizer(line, ",");
+        token.nextToken();
+        token.nextToken();
+        this.loginDetails = token.nextToken();
+        this.password = token.nextToken();
     }
 
     public void setRole(String role) {

@@ -21,6 +21,9 @@ public class Customer extends Person {
         return String.format("%s,\nPhoneNumber: %s", super.toString(),getPhoneNumber());
     }
 
+    public Booking getBooking() {
+        return booking;
+    }
 
     /*
     These methods do not need to be here.

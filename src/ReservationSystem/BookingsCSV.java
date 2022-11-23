@@ -67,5 +67,3 @@ public class BookingsCSV extends GeneralCSV {
     }
 }
 
-
-

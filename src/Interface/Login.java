@@ -1,66 +1,103 @@
 package Interface;
 
-import java.util.HashMap;
+import Person.Owner;
+import ReservationSystem.Booking;
+import ReservationSystem.BookingDate;
+import ReservationSystem.BookingTime;
+import RestaurantSystem.Menu;
+import RestaurantSystem.Restaurant;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Login {
+import static CSV.GeneralCSV.readCSV;
+import static ReservationSystem.BookingsCSV.createBookingsCSV;
 
+public class Login {
     String userField;
     String passField;
-    HashMap<String,String> LoginDetails = new HashMap<String,String>();
+
+    Owner owner = new Owner("Name", "Owner");
+    Menu menu = new Menu();
+
+    Restaurant restaurant = new Restaurant("Yum Restaurant", owner, menu);
     Scanner scan = new Scanner(System.in);
 
-    Login(HashMap loginDetails){
-        System.out.println("Are you a (G)uest, (S)taff, (C)hef");
-        String inputLogin = scan.nextLine().toUpperCase();
-        switch(inputLogin){
-            case("G"):
-                GuestLogin();
-                break;
-            case("S"):
-                LoginNow(LoginDetails);
-                break;
-            case("C"):
-                chefOptions();
+    Login(){
+        System.out.println("Enter Username: ");
+        userField = scan.nextLine();
+        System.out.println("Enter Password: ");
+        passField = scan.nextLine();
+
+        if(userField.equals("Guest") && passField.equals("Password")){
+            GuestLogin();
+        } else if (userField.equals("Staff") && (passField.equals("Password"))) {
+            staffMenu();
+        } else if (userField.equals("Management") && (passField.equals("Password"))) {
+            managementOptions();
+
+        }else {
+            System.out.println("Incorrect Login");
+            new Login();
+
         }
 
 
     }
+
+    private void managementOptions() {
+        System.out.println("(M)anage employees, (V)iew records");
+        String input = scan.nextLine().toUpperCase();
+        switch(input){
+            case("M"):
+
+        }
+    }
+
+
+    void restaurantMenu(){
+        System.out.println("Would you like to (C)reate restaurants, (V)iew restaurants?");
+        String input = scan.nextLine().toUpperCase();
+        switch(input){
+            case("C"):
+                createRestaurant();
+                break;
+            case("V"):
+                viewRestaurants();
+                break;
+        }
+    }
+
+    /* WORK IN PROGRESS!!! */
+    private void createRestaurant() {
+
+    }
+
+    private void viewRestaurants() {
+
+    }
+
+    private Object getChoice(Object[] choices) {
+        if (choices.length == 0) return null;
+        while (true) {
+            char c = 'A';
+            for (Object choice : choices) {
+                System.out.println(c + ") " + choice);
+                c++;
+            }
+            String input = scan.nextLine();
+            int n = input.toUpperCase().charAt(0) - 'A';
+            if (0 <= n && n < choices.length)
+                return choices[n];
+        }
+    }
+
 
 
     private void chefOptions() {
         System.out.println("Chef options");
     }
 
-
-    void LoginNow(HashMap<String, String> LoginInfoOrg) {
-        // making a copy of hashmap, globally available
-        LoginDetails = LoginInfoOrg;
-
-        System.out.println("Welcome to Cool Restaurant Management System! \nPlease input details \n");
-        System.out.println("Enter Username: ");
-        userField = scan.nextLine();
-        System.out.println("Enter Password: ");
-        passField = scan.nextLine();
-
-        if(userField.equals("Marty") & passField.equals("Password")){
-            System.out.println("Login Success");
-            System.out.println("Proceed? (Y) / (N)");
-            String d = scan.nextLine().toUpperCase();
-            switch (d) {
-                case ("Y") -> staffMenu();
-                case ("N") -> new Login(LoginDetails); // Method call to original input
-            }
-        } else {
-            System.out.println("Incorrect Login, Return? (Y)");
-            if(scan.nextLine().equals("Y")){
-                new Login(LoginDetails);
-            }
-
-        }
-
-
-    }
 
     private void staffMenu() {
         System.out.println("(M)anagement, (R)eservations, (F)ood");
@@ -79,20 +116,71 @@ public class Login {
     }
 
     void GuestLogin(){
-        System.out.println("Welcome Guest.");
-        System.out.println("(B)ook a reservation, (V)iew menu, (P)ay a bill");
-        String guestIn = scan.nextLine().toUpperCase();
-        switch(guestIn){
-            case("B"):
-                System.out.println("Enter date in format DD/MM/YY");
-                System.out.println("Work in progress");
-                break;
-            case("V"):
-                System.out.println("work in progress");
-                break;
-            case("P"):
-                System.out.println("wip");
-                break;
+        boolean cont = true;
+        System.out.println("Welcome to the Yum Restaurant Chain!\n" +
+                           "Please enter a command to continue.");
+
+        while (cont) {
+            System.out.println("(B)ook a reservation, (V)iew menu, (P)ay a bill, (Q)uit system");
+            String command = scan.nextLine().toUpperCase();
+
+            if (command.equals("B")) {
+                addBooking();
+                System.out.println();
+            }
+            else if (command.equals("V")) {
+                showMenu();
+                System.out.println();
+            }
+            else if (command.equals("P")) {
+                System.out.println("WIP");
+                System.out.println();
+            }
+            else if (command.equals("Q")) {
+                cont = false;
+            }
+        }
+    }
+
+    private void addBooking() {
+        System.out.println("""
+                           Date of booking
+                           (yyyy-mm-dd)""");
+        String dateString = scan.nextLine();
+        BookingDate d = new BookingDate(dateString);
+
+        System.out.println("""
+                           Time of booking
+                           (hh:mm)""");
+        String timeString = scan.nextLine();
+        BookingTime t = new BookingTime(timeString);
+
+        System.out.println("Name of booking: ");
+        String nameString = scan.nextLine();
+
+        System.out.println("Number of guests: ");
+        String numberOfGuests = scan.nextLine();
+
+        System.out.println("Phone number: ");
+        String phoneNumber = scan.nextLine();
+
+        System.out.println("Special comments: ");
+        String comments = scan.nextLine();
+
+        System.out.println();
+
+        Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
+        System.out.println("New booking added: ");
+        System.out.println(booking);
+
+        createBookingsCSV(booking); // added booking to CSV file
+    }
+
+    private void showMenu() {
+        ArrayList<String> menuItems = readCSV("menuRecord.csv");
+
+        for (int i = 0; i < menuItems.size(); i++) {
+            System.out.println(menuItems.get(i));
         }
     }
 }

@@ -1,7 +1,6 @@
 package ReservationSystem;
 
 import Person.Customer;
-import RestaurantSystem.Table;
 
 import java.io.IOException;
 import java.util.ArrayList;
