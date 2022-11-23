@@ -98,11 +98,14 @@ public class Login {
 
             if (command.equals("A")) {
                 System.out.println("Enter table number:");
-                int num = scan.nextInt();
-                System.out.println("Enter number of seats:");
-                int seats = scan.nextInt();
+                String num = scan.nextLine();
+                int parsedNum = Integer.parseInt(num);          // parsing a string value to int to solve a problem where line is printed twice
 
-                Table table = new Table(num, seats);
+                System.out.println("Enter number of seats:");
+                String seats = scan.nextLine();
+                int parsedSeats = Integer.parseInt(seats);
+
+                Table table = new Table(parsedNum, parsedSeats);
                 createTableCSV(table);
 
             } else if (command.equals("R")) {
