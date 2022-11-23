@@ -1,5 +1,6 @@
 package Interface;
 
+import Person.Customer;
 import Person.Owner;
 import ReservationSystem.Booking;
 import ReservationSystem.BookingDate;
@@ -17,7 +18,7 @@ public class Login {
     String userField;
     String passField;
 
-    Owner owner = new Owner("Name", "Owner");
+    Owner owner = new Owner("Name");
     Menu menu = new Menu();
 
     Restaurant restaurant = new Restaurant("Yum Restaurant", owner, menu);
@@ -155,21 +156,18 @@ public class Login {
         String timeString = scan.nextLine();
         BookingTime t = new BookingTime(timeString);
 
-        System.out.println("Name of booking: ");
-        String nameString = scan.nextLine();
+        System.out.println("Customer: ");
+        Customer customer=new Customer(scan.nextLine(),scan.nextLine());
 
         System.out.println("Number of guests: ");
         String numberOfGuests = scan.nextLine();
-
-        System.out.println("Phone number: ");
-        String phoneNumber = scan.nextLine();
 
         System.out.println("Special comments: ");
         String comments = scan.nextLine();
 
         System.out.println();
 
-        Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
+        Booking booking = new Booking(d, t, customer, numberOfGuests, comments);
         System.out.println("New booking added: ");
         System.out.println(booking);
 

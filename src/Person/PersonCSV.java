@@ -1,7 +1,6 @@
 package Person;
 
 import CSV.GeneralCSV;
-import ReservationSystem.Booking;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ public class PersonCSV extends GeneralCSV {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(peopleRecord, true), "UTF-8"));
 
             if (peopleRecord.length() == 0 ) {
-                bw.write("Name, Role");
+                bw.write("Name");
                 bw.newLine();
             }
             StringBuffer line = new StringBuffer();
@@ -41,13 +40,11 @@ public class PersonCSV extends GeneralCSV {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(peopleRecord, true), "UTF-8"));
 
             if (peopleRecord.length() == 0 ) {
-                bw.write("Name, Role, Login, Password");
+                bw.write("Name, Login, Password");
                 bw.newLine();
             }
             StringBuffer line = new StringBuffer();
             line.append(staff.getName());
-            line.append(", ");
-            line.append(staff.getRole());
             line.append(", ");
             line.append(staff.getLoginDetails());
             line.append(", ");

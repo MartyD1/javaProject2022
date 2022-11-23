@@ -39,7 +39,10 @@ public class BookingMenu {
                 BookingTime t = new BookingTime(timeString);
 
                 System.out.println("Name:  ");
-                Customer customer=new Customer(in.nextLine(),in.nextLine());
+                String name = in.nextLine();
+                System.out.println("Number: ");
+                String number = in.nextLine();
+                Customer customer=new Customer(name, number);
 
 
                 System.out.println("Number of guests: ");

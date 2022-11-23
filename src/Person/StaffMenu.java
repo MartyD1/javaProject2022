@@ -1,7 +1,6 @@
 package Person;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -27,9 +26,6 @@ public class StaffMenu {
                 System.out.println("Enter name: ");
                 String name = in.nextLine();
 
-                System.out.println("Enter role: ");
-                String role = in.nextLine();
-
                 System.out.println("Enter login details: ");
                 String login = in.nextLine();
 
@@ -38,16 +34,16 @@ public class StaffMenu {
 
                 System.out.println();
 
-                Staff staff = new Staff(name, role, login, password);
+                Staff staff = new Staff(name, login, password);
                 createPersonCSV(staff);
 
             }
             else if (command.equals("R")) {
-                System.out.println("\nEnter staff role to remove: ");
-                String role = in.nextLine();
+                System.out.println("\nEnter staff name to remove: ");
+                String name = in.nextLine();
 
                 ArrayList<String> allStaff = readCSV("peopleRecord.csv");
-                ArrayList<String> choices = getChosenStaff(role);
+                ArrayList<String> choices = getChosenStaff(name);
 
                 String removeStaff = getChoice(choices);
                 if (removeStaff != null) {

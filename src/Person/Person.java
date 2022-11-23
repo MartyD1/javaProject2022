@@ -1,25 +1,15 @@
 package Person;
 
-import java.util.StringTokenizer;
-
 public class Person{
     private String name;
-    private String role;
+
 //    private boolean paid = false;               these things should probably be handled
 //    private boolean orderCancelled = false;     in table class
 //    private double tips;
 
     public Person(String name){
         this.name = name;
-
     }
-
-    public Person(String line) {
-        StringTokenizer token = new StringTokenizer(line, ",");
-        this.name = token.nextToken();
-        this.role = token.nextToken();
-    }
-
 
     public void setName(String name){
         this.name=name;
@@ -34,7 +24,7 @@ public class Person{
 
     @Override
     public String toString() {
-        return String.format("Name: %s, Role: %s", getName());
+        return String.format("Name: %s", getName());
     }
 
     /* Should maybe be methods of table class instead?
