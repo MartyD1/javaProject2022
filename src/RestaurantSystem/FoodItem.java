@@ -1,3 +1,7 @@
+package RestaurantSystem;
+
+import java.util.StringTokenizer;
+
 public class FoodItem {
 
     private char type;
@@ -39,11 +43,18 @@ public class FoodItem {
 
 
     public FoodItem(char type, String name, String description, double price){
-
         this.type = type;
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public FoodItem(String line) {
+        StringTokenizer token = new StringTokenizer(line, ",");
+        this.type = token.nextToken().charAt(0);
+        this.name = token.nextToken();
+        this.description = token.nextToken();
+        this.price = Double.parseDouble(token.nextToken());
     }
 
 

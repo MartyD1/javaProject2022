@@ -1,3 +1,4 @@
+/* Class needs to be deleted at some point to integrate a main driver class */
 package ReservationSystem;
 
 import java.io.IOException;

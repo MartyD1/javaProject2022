@@ -61,7 +61,7 @@ public class BookingMenu {
                                     (yyyy-mm-dd)""");
                 String dateLine = in.nextLine();
 
-                ArrayList<String> allBookings = readBookingsCSV();
+                ArrayList<String> allBookings = readCSV("bookingsRecord.csv");
                 ArrayList<String> choices = getBookingsForDay(dateLine);
 
                 String cancelBooking = getChoice(choices);
@@ -69,7 +69,7 @@ public class BookingMenu {
                     allBookings.remove(cancelBooking);
                 }
 
-                clearCSV();
+                clearCSV("bookingsRecord.csv");
 
                 for (int i = 0; i < allBookings.size(); i++) {
                     Booking tempBooking = new Booking(allBookings.get(i));
