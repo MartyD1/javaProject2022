@@ -7,9 +7,6 @@ import java.util.Scanner;
 
 public class ViewEarnings {        //class to see output in terminal to view profits of day(s)
     private Scanner scan;
-    private LocalDate fDate;
-   private  LocalDate tDate;
-
     private int numOfPeople=1;
 
     Calender calender=new Calender();
@@ -55,42 +52,41 @@ public class ViewEarnings {        //class to see output in terminal to view pro
                     int fYear=Integer.parseInt( numsFrom[0] );
                     int tYear=Integer.parseInt( numsTo[0] );
 
-                    fDate= LocalDate.of(fYear, fMonth, fDay);
-                    tDate=LocalDate.of(tYear, tMonth, tDay);
+                    LocalDate fDate;fDate= LocalDate.of(fYear, fMonth, fDay);
+                    LocalDate tDate=LocalDate.of(tYear, tMonth, tDay);
 
-                    ArrayList<LocalDate> imbetweenDates=new ArrayList<>();
+                    ArrayList<LocalDate> inbetweenDates=new ArrayList<>();
                     while(!(fDate.equals(tDate))){                          //try .equals()
-                        imbetweenDates.add(fDate);
+                        inbetweenDates.add(fDate);
                         fDate=fDate.plusDays(1);
                     }
-                    imbetweenDates.add(tDate);
+                    inbetweenDates.add(tDate);
 
                     String localDateString;
                     String[] splitUp;
                     DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd MM yyyy");
 
                     double madeOverDays=0;
-                    for(int i=0;i<imbetweenDates.size();i++){
-                        localDateString=imbetweenDates.get(i).format( formatter );
-                        splitUp=localDateString.split(" ");
-                        madeOverDays+=billOnDay(
-                                Integer.parseInt( splitUp[2]),
-                                Integer.parseInt( splitUp[1]),
-                                Integer.parseInt( splitUp[0]));
+                    for (LocalDate inbetweenDate : inbetweenDates) {
+                        localDateString = inbetweenDate.format(formatter);
+                        splitUp = localDateString.split(" ");
+                        madeOverDays += billOnDay(
+                                Integer.parseInt(splitUp[2]),
+                                Integer.parseInt(splitUp[1]),
+                                Integer.parseInt(splitUp[0]));
                     }
                     System.out.println("Gross Profit $"+madeOverDays);
                     System.out.println("Date, time, Name, phoneNumber, FinalBill");
 
 
-
-                    for(int i=0;i<imbetweenDates.size();i++) {
-                        localDateString=imbetweenDates.get(i).format( formatter );
+                    for (LocalDate inbetweenDate : inbetweenDates) {
+                        localDateString = inbetweenDate.format(formatter);
                         //System.out.println("localDateString: "+localDateString);
-                        splitUp=localDateString.split(" ");
+                        splitUp = localDateString.split(" ");
                         printDate(
-                                Integer.parseInt( splitUp[2] ),
-                                Integer.parseInt( splitUp[1] ),
-                                Integer.parseInt( splitUp[0] ));
+                                Integer.parseInt(splitUp[2]),
+                                Integer.parseInt(splitUp[1]),
+                                Integer.parseInt(splitUp[0]));
 
                     }
 
@@ -105,9 +101,8 @@ public class ViewEarnings {        //class to see output in terminal to view pro
 
     public void printDate(int y, int m, int d){
         String date=getStringDate(y, m, d);
-        CalenderDate dateObject = new CalenderDate(date);
 
-        for (BookingHistory history : calender.BookingsOnDay(dateObject)) {
+        for (DetailsBooking history : calender.BookingsOnDay(date)) {
             System.out.println(numOfPeople + ") " + history.toString());
             numOfPeople++;
         }
@@ -131,23 +126,23 @@ public class ViewEarnings {        //class to see output in terminal to view pro
 
     }
 
-    public void setBookings(ArrayList<BookingHistory> records) {
+    public void setBookings(ArrayList<DetailsBooking> records) {
 
-        for (int i = 0; i < records.size(); i++) {
-            calender.addBooking(records.get(i));
+        for (DetailsBooking record : records) {
+            calender.addBooking(record);
         }
         //calender.showBooking(); //uncomment method from Calender class  and call to see all bookings added
     }
 
     public double billOnDay(int y, int m, int d){
         String date=getStringDate(y, m, d);
-        CalenderDate dateObject = new CalenderDate(date);
         double madeOnDay=0;
-        for (BookingHistory history : calender.BookingsOnDay(dateObject))
+        for (DetailsBooking history : calender.BookingsOnDay(date))
             madeOnDay+=history.getFinalBill();
 
         return madeOnDay;
 
     }
+
 
 }

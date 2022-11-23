@@ -2,22 +2,22 @@ package FinanceHistory;
 
 import java.util.ArrayList;
 public class Calender {
-    private ArrayList<BookingHistory> bookings;
+    private ArrayList<DetailsBooking> bookings;
 
     public Calender(){
         bookings=new ArrayList<>();
     }
 
-    public void addBooking(BookingHistory booking){
+    public void addBooking(DetailsBooking booking){
         bookings.add(booking);
     }
 
-    public ArrayList<BookingHistory> BookingsOnDay(CalenderDate day){
+    public ArrayList<DetailsBooking> BookingsOnDay(String day){
 
-        ArrayList<BookingHistory> schedule =new ArrayList<>();
+        ArrayList<DetailsBooking> schedule =new ArrayList<>();
 
         for(int i=0;i<bookings.size();i++) {
-            if (bookings.get(i).getDay().equals(day.toString()))
+            if (bookings.get(i).getDay().equals(day))
                 schedule.add(bookings.get(i));
         }
 

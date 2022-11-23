@@ -3,38 +3,39 @@ package FinanceHistory;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FinanceRecords {
+public class SetFinanceRecords {
 
-    private static ArrayList<BookingHistory> bookings;
+    private ArrayList<DetailsBooking> bookings;
 
     public static void main(String args[]) throws IOException {
-        FinanceRecords files = new FinanceRecords(); //object of this class
+        SetFinanceRecords files = new SetFinanceRecords(); //object of this class
 
 
         files.readFile();
         files.writeFile();
+        files.runViewEarnings();
 
-        ViewEarnings earnings = new ViewEarnings();
-        earnings.setBookings(bookings );
-        earnings.start();
     }
 
     public void readFile() {
         String path = "bookingsRecord.csv";
         String str = "";
-        bookings=new  ArrayList<BookingHistory>();
+        bookings=new  ArrayList<DetailsBooking>();
         try {
             //scan file format- Date, Time, Name, Group size, Phone number, Comments
 
-            BookingHistory bh;
+            DetailsBooking db;
             BufferedReader br = new BufferedReader(new FileReader(path));
             int lineIndex=0;
             while ((str = br.readLine()) != null) {
                 lineIndex++;
                 if (lineIndex != 1) {
-                    String[] details = str.split(", ");
-                    bh = new BookingHistory(details[0] + " " + details[1] + " " + details[2]+ " " + details[4]);
-                    bookings.add(bh);
+                    String[] details = str.split(",");
+                    for(int i=0;i<details.length;i++){
+                        details[i]=details[i].trim();
+                    }
+                    db = new DetailsBooking(details[0] + " " + details[1] + " " + details[2]+ " " + details[4]);
+                    bookings.add(db);
 
                 }
             }
@@ -43,9 +44,6 @@ public class FinanceRecords {
         } catch (IOException i) {
             i.printStackTrace();
         }
-//        //Uncomment this to add a second date into bookings so for to see if viewing multiple dates works.
-//        BookingHistory egBooking = new BookingHistory("2022-12-24 09:30 Ronan 12345678910");
-//        bookings.add(egBooking);
 
 
     }
@@ -54,7 +52,7 @@ public class FinanceRecords {
 
     public void writeFile() throws FileNotFoundException {
 
-        File output = new File("RecordsFinance.csv");
+        File output = new File("FinanceRecord.csv");
         PrintWriter write = new PrintWriter(output);
 
         write.print("Date, time, Name, phoneNumber, FinalBill\n");
@@ -69,5 +67,17 @@ public class FinanceRecords {
 
 
     }
+
+    public void runViewEarnings(){
+
+        ViewEarnings earnings = new ViewEarnings();
+
+        earnings.setBookings(bookings );
+        earnings.start();
+
+    }
+
+
+
 }
 
