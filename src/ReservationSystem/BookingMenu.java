@@ -1,8 +1,6 @@
 package ReservationSystem;
 
-import java.awt.print.Book;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -111,6 +109,3 @@ public class BookingMenu {
         }
     }
 }
-
-
-
