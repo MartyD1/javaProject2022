@@ -3,6 +3,7 @@ package RestaurantSystem;
 import java.util.ArrayList;
 
 public class Order {
+    private Table table;
 
 
  // Arraylist orders to hold ordered items of type FoodItem
@@ -45,7 +46,7 @@ public class Order {
 //to string
     @Override
     public String  toString(){
-       return String.format("\n%s: %s\n%s: %s\n%s: %.2f\n","Table Number",Table.getTableNumber(),"Order",Orders,"Total Price",getOrderPrice());
+       return String.format("\n%s: %s\n%s: %s\n%s: %.2f\n","Table Number",table.getTableNumber(),"Order",Orders,"Total Price",getOrderPrice());
     }
 
 

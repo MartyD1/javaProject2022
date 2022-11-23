@@ -3,9 +3,8 @@ package RestaurantSystem;
 import CSV.GeneralCSV;
 
 import java.io.*;
-import java.nio.Buffer;
 
-public class MenuCSV extends GeneralCSV {
+public class  MenuCSV extends GeneralCSV {
     public static void createMenuCSV(FoodItem foodItem) {
         try {
             File menuRecord = new File("menuRecord.csv");

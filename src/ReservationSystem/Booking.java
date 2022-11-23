@@ -1,7 +1,9 @@
 package ReservationSystem;
 
+import Person.Customer;
+import RestaurantSystem.Table;
+
 import java.io.Serializable;
-import java.security.SecureRandom;
 import java.util.StringTokenizer;
 
 /**
@@ -11,17 +13,18 @@ public class Booking implements Serializable {
 
     private BookingDate date;
     private BookingTime time;
-    private String name;
+
+    private Customer customer;
+    private Table table;
     private String numberOfPeople;
-    private String phoneNumber;
+
     private String comments;
 
-    public Booking(BookingDate date, BookingTime time, String name, String numberOfPeople, String phoneNumber, String comments) {
+    public Booking(BookingDate date, BookingTime time, Customer customer, String numberOfPeople, String comments) {
         this.date = date;
         this.time = time;
-        this.name = name;
+        this.customer=customer;
         this.numberOfPeople = numberOfPeople;
-        this.phoneNumber = phoneNumber;
         this.comments = comments;
     }
 
@@ -29,9 +32,8 @@ public class Booking implements Serializable {
         StringTokenizer token = new StringTokenizer(line, ",");
         this.date = new BookingDate(token.nextToken());
         this.time = new BookingTime(token.nextToken());
-        this.name = token.nextToken();
+        this.customer =new Customer(token.nextToken(),token.nextToken());
         this.numberOfPeople = token.nextToken();
-        this.phoneNumber = token.nextToken();
         this.comments = token.nextToken();
     }
 
@@ -42,13 +44,11 @@ public class Booking implements Serializable {
         return time;
     }
     public String getName() {
-        return name;
+        return customer.getName();
     }
+    public String getPhoneNumber() {return customer.getPhoneNumber();}
     public String getNumberOfPeople() {
         return numberOfPeople;
-    }
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
     public String getComments() {
         return comments;

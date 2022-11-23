@@ -3,7 +3,6 @@ package ReservationSystem;
 import CSV.GeneralCSV;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BookingsCSV extends GeneralCSV {
@@ -15,7 +14,7 @@ public class BookingsCSV extends GeneralCSV {
             BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(bookingsRecord, true), "UTF-8"));
 
             if (bookingsRecord.length() == 0 ) {
-                bw.write("Date, Time, Name, Group size, Phone number, Comments");
+                bw.write("Date, Time, Customer Name, Group size, Phone Number, Comments");
                 bw.newLine();
             }
             StringBuffer line = new StringBuffer();

@@ -3,19 +3,27 @@ package RestaurantSystem;
 public class Table {
 
 
-    private static int tableNumber;
-    private int numOfSeats;
+    private  String tableNumber;
+    private String numOfSeats;
 
 
     //create a table
-    public Table(int tableNumber,int numOfSeats){
+    public Table(String tableNumber,String numOfSeats){
         this.tableNumber=tableNumber;
         this.numOfSeats=numOfSeats;
     }
 
 
     //get a table number
-    public static int getTableNumber() {
-        return tableNumber;
+    public  String getTableNumber() {
+        return tableNumber;}
+
+    public String getNumOfSeats() {
+        return numOfSeats;
+    }
+
+    @Override
+    public String toString(){
+        return String.format("%s: %s\n%s: %s","Table Number",getTableNumber(),"Number Of Seats",getNumOfSeats());
     }
 }

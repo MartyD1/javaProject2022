@@ -5,15 +5,20 @@ import ReservationSystem.Booking;
 public class Customer extends Person {
 
     private Booking booking;
+    private String phoneNumber;
 
-    public Customer(String name, String role, Booking booking) {
-        super(name, role);
-        this.booking = booking;
+    public Customer(String name, String phoneNumber){
+        super(name);
+        this.phoneNumber=phoneNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,\nBooking details: %s", super.toString(), this.booking.toString());
+        return String.format("%s,\nPhoneNumber: %s", super.toString(),getPhoneNumber());
     }
 
 

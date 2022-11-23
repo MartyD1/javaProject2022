@@ -1,10 +1,11 @@
 package ReservationSystem;
 
-import java.awt.print.Book;
+import Person.Customer;
+import RestaurantSystem.Table;
+
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static ReservationSystem.BookingsCSV.*;
 
@@ -38,21 +39,20 @@ public class BookingMenu {
                 String timeString = in.nextLine();
                 BookingTime t = new BookingTime(timeString);
 
-                System.out.println("Name of booking: "); // name could be changed to use getName() method of Customer object down the line
-                String nameString = in.nextLine();
+                System.out.println("Name:  ");
+                Customer customer=new Customer(in.nextLine(),in.nextLine());
+
 
                 System.out.println("Number of guests: ");
                 String numberOfGuests = in.nextLine();
 
-                System.out.println("Phone number: ");
-                String phoneNumber = in.nextLine();
 
                 System.out.println("Special comments: ");
                 String comments = in.nextLine();
 
                 System.out.println();
 
-                Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
+                Booking booking = new Booking(d, t, customer, numberOfGuests, comments);
                 createBookingsCSV(booking); // added booking to CSV file
                 calendar.add(booking);
             }

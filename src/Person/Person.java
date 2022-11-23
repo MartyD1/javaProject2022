@@ -6,9 +6,9 @@ public class Person{
 //    private boolean orderCancelled = false;     in table class
 //    private double tips;
 
-    public Person(String name, String role){
+    public Person(String name){
         this.name = name;
-        this.role = role;
+
     }
 
     public void setName(String name){
@@ -20,17 +20,11 @@ public class Person{
 
 
 
-    public String getRole() {
-        return role;
-    }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
 
     @Override
     public String toString() {
-        return String.format("Name: %s, Role: %s", getName(), getRole());
+        return String.format("Name: %s, Role: %s", getName());
     }
 
     /* Should maybe be methods of table class instead?
