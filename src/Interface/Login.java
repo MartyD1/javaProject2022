@@ -7,12 +7,16 @@ import ReservationSystem.BookingDate;
 import ReservationSystem.BookingTime;
 import RestaurantSystem.Menu;
 import RestaurantSystem.Restaurant;
+import RestaurantSystem.Table;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import static CSV.GeneralCSV.clearCSV;
 import static CSV.GeneralCSV.readCSV;
 import static ReservationSystem.BookingsCSV.createBookingsCSV;
+import static ReservationSystem.BookingsCSV.getBookingsForDay;
+import static RestaurantSystem.TableCSV.createTableCSV;
 
 public class Login {
     String userField;
@@ -47,7 +51,7 @@ public class Login {
     }
 
     private void managementOptions() {
-        System.out.println("(M)anage employees, (V)iew records");
+        System.out.println("(M)anage employees, (V)iew records, (T)ables ");
         String input = scan.nextLine().toUpperCase();
         switch(input){
             case("M"):
@@ -66,6 +70,45 @@ public class Login {
             case("V"):
                 viewRestaurants();
                 break;
+        }
+    }
+
+    public void TableMenu() {
+
+        // Scanner object
+        Scanner scan = new Scanner(System.in);
+
+        boolean cont = true;
+
+        while (cont) {
+
+
+            System.out.println("(A)dd table, (R)emove table, (V)iew tables");
+            String command = scan.nextLine();
+
+            if (command.equals("A")) {
+                System.out.println("Enter table number:");
+                int num = scan.nextInt();
+                System.out.println("Enter number of seats:");
+                int seats = scan.nextInt();
+
+                Table table = new Table(num, seats);
+                createTableCSV(table);
+
+            } else if (command.equals("R")) {
+
+
+            } else if (command.equals("V")) {
+                ArrayList<String> tables = readCSV("table.csv");
+
+                for (int i = 0; i < tables.size(); i++) {
+                    System.out.println(tables.get(i));
+
+                }
+
+
+            }
+
         }
     }
 
