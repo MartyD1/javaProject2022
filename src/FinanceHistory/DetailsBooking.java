@@ -1,20 +1,20 @@
 package FinanceHistory;
 
-public class BookingHistory {
-    private String name;
-    private CalenderDate day;
-    private CalenderTime bookingTime;
+public class DetailsBooking {
+    private final String name;
+    private final String day;
+    private final String bookingTime;
 
-    private String phoneNumber;
+    private final String phoneNumber;
 
-    private double finalBill;
+    private final double finalBill;
 
-    public BookingHistory(String booking){
+    public DetailsBooking(String booking){
         //booking format-tableName, day, time
         String[] str=booking.split(" ");
         name=str[2];
-        day=new CalenderDate( str[0] );
-        bookingTime= new CalenderTime( str[1] );
+        day= str[0] ;
+        bookingTime= str[1] ;
         phoneNumber=str[3];
         finalBill = 0;      //Don't have any final bill
     }
@@ -24,11 +24,11 @@ public class BookingHistory {
     }
 
     public String getDay(){
-        return day.toString();
+        return day;
     }
 
     public String getBookingTime(){
-        return bookingTime.toString();
+        return bookingTime;
     }
 
     public String getPhoneNumber(){
@@ -41,6 +41,6 @@ public class BookingHistory {
 
     public String toString(){
 
-        return day.toString()+" "+bookingTime.toString()+" "+name+" "+phoneNumber+" "+finalBill;
+        return day+" "+bookingTime+" "+name+" "+phoneNumber+" "+finalBill;
     }
 }
