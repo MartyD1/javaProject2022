@@ -10,6 +10,43 @@ public class Login {
     Scanner scan = new Scanner(System.in);
 
     Login(){
+
+        System.out.println("Would you like to (C)reate restaurants, (V)iew restaurants?");
+        String input = scan.nextLine().toUpperCase();
+        switch(input){
+            case("C"):
+                createRestaurant();
+                break;
+            case("V"):
+                viewRestaurants();
+                break;
+        }
+
+    }
+
+    private void createRestaurant() {
+
+    }
+
+    private void viewRestaurants() {
+
+    }
+    private Object getChoice(Object[] choices) {
+        if (choices.length == 0) return null;
+        while (true) {
+            char c = 'A';
+            for (Object choice : choices) {
+                System.out.println(c + ") " + choice);
+                c++;
+            }
+            String input = scan.nextLine();
+            int n = input.toUpperCase().charAt(0) - 'A';
+            if (0 <= n && n < choices.length)
+                return choices[n];
+        }
+    }
+
+    private void optionMenu(){
         System.out.println("Are you a (G)uest, (S)taff, (C)hef");
         String inputLogin = scan.nextLine().toUpperCase();
         switch(inputLogin){
@@ -22,7 +59,6 @@ public class Login {
             case("C"):
                 chefOptions();
         }
-
 
     }
 
