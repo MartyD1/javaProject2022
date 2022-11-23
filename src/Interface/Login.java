@@ -1,5 +1,9 @@
 package Interface;
 
+import Person.Owner;
+import RestaurantSystem.Menu;
+import RestaurantSystem.Restaurant;
+
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -7,10 +11,40 @@ public class Login {
 
     String userField;
     String passField;
+
+    Owner owner = new Owner("Name", "Owner");
+    Menu menu = new Menu();
+
+    Restaurant restaurant = new Restaurant("Yum Restaurant", owner, menu);
     Scanner scan = new Scanner(System.in);
 
     Login(){
+        System.out.println("Enter Username: ");
+        userField = scan.nextLine();
+        System.out.println("Enter Password: ");
+        passField = scan.nextLine();
 
+        if(userField.equals("Guest") && passField.equals("Password")){
+            GuestLogin();
+
+        } else if (userField.equals("Staff") && (passField.equals("Password"))) {
+            staffMenu();
+        } else if (userField.equals("Management") && (passField.equals("Password"))) {
+            managementOptions();
+
+        }else {
+            System.out.println("Incorrect Login");
+            new Login();
+
+        }
+
+
+    }
+
+    private void managementOptions() {
+    }
+
+    void restaurantMenu(){
         System.out.println("Would you like to (C)reate restaurants, (V)iew restaurants?");
         String input = scan.nextLine().toUpperCase();
         switch(input){
@@ -21,9 +55,9 @@ public class Login {
                 viewRestaurants();
                 break;
         }
-
     }
 
+    /* WORK IN PROGRESS!!! */
     private void createRestaurant() {
 
     }
@@ -31,6 +65,7 @@ public class Login {
     private void viewRestaurants() {
 
     }
+
     private Object getChoice(Object[] choices) {
         if (choices.length == 0) return null;
         while (true) {
@@ -46,55 +81,12 @@ public class Login {
         }
     }
 
-    private void optionMenu(){
-        System.out.println("Are you a (G)uest, (S)taff, (C)hef");
-        String inputLogin = scan.nextLine().toUpperCase();
-        switch(inputLogin){
-            case("G"):
-                GuestLogin();
-                break;
-            case("S"):
-                LoginNow();
-                break;
-            case("C"):
-                chefOptions();
-        }
-
-    }
 
 
     private void chefOptions() {
         System.out.println("Chef options");
     }
 
-
-    void LoginNow() {
-        // making a copy of hashmap, globally available
-
-        System.out.println("Welcome to Cool Restaurant Management System! \nPlease input details \n");
-        System.out.println("Enter Username: ");
-        userField = scan.nextLine();
-        System.out.println("Enter Password: ");
-        passField = scan.nextLine();
-
-        if(userField.equals("Marty") & passField.equals("Password")){
-            System.out.println("Login Success");
-            System.out.println("Proceed? (Y) / (N)");
-            String d = scan.nextLine().toUpperCase();
-            switch (d) {
-                case ("Y") -> staffMenu();
-                case ("N") -> new Login(); // Method call to original input
-            }
-        } else {
-            System.out.println("Incorrect Login, Return? (Y)");
-            if(scan.nextLine().equals("Y")){
-                new Login();
-            }
-
-        }
-
-
-    }
 
     private void staffMenu() {
         System.out.println("(M)anagement, (R)eservations, (F)ood");
