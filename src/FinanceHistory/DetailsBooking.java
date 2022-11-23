@@ -1,4 +1,4 @@
-package FinanceHistory;//
+package FinanceHistory;
 
 public class DetailsBooking {
     private final String name;

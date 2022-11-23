@@ -1,4 +1,4 @@
-package FinanceHistory;//
+package FinanceHistory;
 
 import java.io.*;
 import java.util.ArrayList;
