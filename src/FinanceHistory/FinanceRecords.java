@@ -3,7 +3,7 @@ package FinanceHistory;
 import java.io.*;
 import java.util.ArrayList;
 
-public class FinanceRecords {
+public class FinanceRecords {//
 
     private static ArrayList<BookingHistory> bookings;
 
