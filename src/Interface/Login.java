@@ -14,7 +14,6 @@ import static CSV.GeneralCSV.readCSV;
 import static ReservationSystem.BookingsCSV.createBookingsCSV;
 
 public class Login {
-    private Scanner in;
     String userField;
     String passField;
 
@@ -32,10 +31,8 @@ public class Login {
 
         if(userField.equals("Guest") && passField.equals("Password")){
             GuestLogin();
-
         } else if (userField.equals("Staff") && (passField.equals("Password"))) {
             staffMenu();
-
         } else if (userField.equals("Management") && (passField.equals("Password"))) {
             managementOptions();
 
@@ -119,52 +116,63 @@ public class Login {
     }
 
     void GuestLogin(){
-        System.out.println("Welcome Guest.");
-        System.out.println("(B)ook a reservation, (V)iew menu, (P)ay a bill");
-        String guestIn = scan.nextLine().toUpperCase();
-        switch(guestIn){
-            case("B"):
+        boolean cont = true;
+        System.out.println("Welcome to the Yum Restaurant Chain!\n" +
+                           "Please enter a command to continue.");
+
+        while (cont) {
+            System.out.println("(B)ook a reservation, (V)iew menu, (P)ay a bill, (Q)uit system");
+            String command = scan.nextLine().toUpperCase();
+
+            if (command.equals("B")) {
                 addBooking();
-                break;
-            case("V"):
+                System.out.println();
+            }
+            else if (command.equals("V")) {
                 showMenu();
-                break;
-            case("P"):
-                System.out.println("wip");
-                break;
+                System.out.println();
+            }
+            else if (command.equals("P")) {
+                System.out.println("WIP");
+                System.out.println();
+            }
+            else if (command.equals("Q")) {
+                cont = false;
+            }
         }
     }
 
     private void addBooking() {
-        in = new Scanner(System.in);
-
         System.out.println("""
                            Date of booking
                            (yyyy-mm-dd)""");
-        String dateString = in.nextLine();
+        String dateString = scan.nextLine();
         BookingDate d = new BookingDate(dateString);
 
         System.out.println("""
                            Time of booking
                            (hh:mm)""");
-        String timeString = in.nextLine();
+        String timeString = scan.nextLine();
         BookingTime t = new BookingTime(timeString);
 
-        System.out.println("Name of booking: "); // name could be changed to use getName() method of Customer object down the line
-        String nameString = in.nextLine();
+        System.out.println("Name of booking: ");
+        String nameString = scan.nextLine();
 
         System.out.println("Number of guests: ");
-        String numberOfGuests = in.nextLine();
+        String numberOfGuests = scan.nextLine();
 
         System.out.println("Phone number: ");
-        String phoneNumber = in.nextLine();
+        String phoneNumber = scan.nextLine();
 
         System.out.println("Special comments: ");
-        String comments = in.nextLine();
+        String comments = scan.nextLine();
 
         System.out.println();
 
         Booking booking = new Booking(d, t, nameString, numberOfGuests, phoneNumber, comments);
+        System.out.println("New booking added: ");
+        System.out.println(booking);
+
         createBookingsCSV(booking); // added booking to CSV file
     }
 
