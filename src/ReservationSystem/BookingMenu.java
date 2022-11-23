@@ -23,7 +23,7 @@ public class BookingMenu {
             System.out.println("A)dd booking\nC)ancel booking\nS)how booking\nQ)uit system");
             String command = in.nextLine().toUpperCase(); // if user inputs lowercase command, it will still be read
 
-            if (command.equals("A")) { // add booking function follows
+            if (command.equals("A")) {// add booking function follows
                 System.out.println("""
                                     Date of booking
                                     (yyyy-mm-dd)""");

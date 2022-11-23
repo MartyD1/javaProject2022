@@ -1,12 +1,26 @@
 package Person;
 
+import java.util.StringTokenizer;
+
 public class Staff extends Person {
 
     private String loginDetails; // two datafields for login system
     private String password;
 
-    public Staff(String name, String role){
+    public Staff(String name, String role, String loginDetails, String password){
         super(name, role);
+        this.loginDetails = loginDetails;
+        this.password = password;
+    }
+
+    public Staff(String line) {
+        super(line);
+
+        StringTokenizer token = new StringTokenizer(line, ",");
+        token.nextToken();
+        token.nextToken();
+        this.loginDetails = token.nextToken();
+        this.password = token.nextToken();
     }
 
     public String getLoginDetails() {

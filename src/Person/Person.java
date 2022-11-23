@@ -1,4 +1,7 @@
 package Person;
+
+import java.util.StringTokenizer;
+
 public class Person{
     private String name;
     private String role;
@@ -10,6 +13,13 @@ public class Person{
         this.name = name;
         this.role = role;
     }
+
+    public Person(String line) {
+        StringTokenizer token = new StringTokenizer(line, ",");
+        this.name = token.nextToken();
+        this.role = token.nextToken();
+    }
+
 
     public void setName(String name){
         this.name=name;
