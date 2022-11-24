@@ -4,14 +4,28 @@ import java.util.ArrayList;
 public class Calender {
     private ArrayList<DetailsBooking> bookings;
 
+
+    /**
+     * Method calender initializes arraylist booking.
+     */
     public Calender(){
         bookings=new ArrayList<>();
     }
 
+
+    /**
+     * Method addBooking stores new bookings
+     * @param booking the new booking
+     */
     public void addBooking(DetailsBooking booking){
         bookings.add(booking);
     }
 
+    /**
+     * Method BookingsOnDay returns an arraylist contains bookings on a specific date.
+     * @param day the day of the bookings
+     * @return the arraylist of the bookings
+     */
     public ArrayList<DetailsBooking> BookingsOnDay(String day){
 
         ArrayList<DetailsBooking> schedule =new ArrayList<>();
@@ -24,12 +38,4 @@ public class Calender {
         return schedule;
 
     }
-
-//    public void showBooking(){  //uncomment and call in ViewEarnings to see all bookings added from scan.
-//        //System.out.println("bookings.size(): "+bookings.size());
-//        for(int i=0;i<bookings.size();i++)
-//        System.out.println("bookings.get(i).toString() #"+(i)+": "+bookings.get(i).toString());
-//
-//    }
-
 }

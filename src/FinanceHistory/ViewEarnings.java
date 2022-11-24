@@ -5,24 +5,34 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class ViewEarnings {        //class to see output in terminal to view profits of day(s)
     private Scanner scan;
     private int numOfPeople=1;
 
     Calender calender=new Calender();
+
+
+    /**
+     * Constructor ViewEarnings initializes Scanner object scan.
+     */
     public ViewEarnings(){
         scan=new Scanner(System.in);
     }
 
+
+    /**
+     * Method start asks the user between what dates they would like to see information on previous bookings and prints.
+     */
     public void start() {
 
         boolean view = true;
 
         while (view) {
-            System.out.println("V)iew Records\nE)xit");
+            System.out.println("S)how Earnings\nC)lose");
             String action = scan.nextLine().toUpperCase();
 
-            if (action.equals("V")) {
+            if (action.equals("S")) {
                 System.out.println("Enter Dates (from to) (yyyy-mm-dd) :");
                 String breakUp = scan.nextLine();
                 String[] dates = breakUp.split(" ");
@@ -99,6 +109,12 @@ public class ViewEarnings {        //class to see output in terminal to view pro
 
     }
 
+    /**
+     * Method printDate prints the information on the date given in parameters.
+     * @param y Year
+     * @param m Month
+     * @param d Day
+     */
     public void printDate(int y, int m, int d){
         String date=getStringDate(y, m, d);
 
@@ -108,6 +124,14 @@ public class ViewEarnings {        //class to see output in terminal to view pro
         }
     }
 
+
+    /**
+     * Method getStringDate returns a date in String.
+     * @param y Year
+     * @param m Month
+     * @param d Day
+     * @return the date in format yyyy-MM-dd
+     */
     public String getStringDate(int y, int m, int d){ //day, month, year
         String sDay=Integer.toString(d); //StringDay
         String sMonth=Integer.toString(m);
@@ -116,6 +140,12 @@ public class ViewEarnings {        //class to see output in terminal to view pro
         return sYear+"-"+sMonth+"-"+sDay;
     }
 
+
+    /**
+     * Method getIntDate takes a string of date and returns an array of the date.
+     * @param date String date
+     * @return array holding int values of the string date entered.
+     */
     public int[]  getIntDate(String date){
         String[] stringNum=date.split("-");
         int[] intNums=new int[3];
@@ -126,14 +156,26 @@ public class ViewEarnings {        //class to see output in terminal to view pro
 
     }
 
+
+    /**
+     * Method setBookings stores the data collecetd in Calender class.
+     * @param records ArrayList holding details if booking
+     */
     public void setBookings(ArrayList<DetailsBooking> records) {
 
         for (DetailsBooking record : records) {
             calender.addBooking(record);
         }
-//        calender.showBooking(); //uncomment method from Calender class  and call to see all bookings added
     }
 
+
+    /**
+     * Method billOnDay calculates the money made in a day
+     * @param y Year
+     * @param m Month
+     * @param d Day
+     * @return the total amount of money made that day.
+     */
     public double billOnDay(int y, int m, int d){
         String date=getStringDate(y, m, d);
         double madeOnDay=0;

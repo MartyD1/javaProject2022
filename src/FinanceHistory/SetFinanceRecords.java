@@ -7,16 +7,11 @@ public class SetFinanceRecords {
 
     private ArrayList<DetailsBooking> bookings;
 
-    public static void main(String args[]) throws IOException {
-        SetFinanceRecords files = new SetFinanceRecords(); //object of this class
 
-
-        files.readFile();
-        files.writeFile();
-        files.runViewEarnings();
-
-    }
-
+    /**
+     * Method to read two csv files to obtain information of booking information and final bill.
+     * Passes information read into arraylist.
+     */
     public void readFile() {
         String[] path = {"bookingsRecord.csv", "orderRecord.csv"};
         String str = "";
@@ -62,7 +57,10 @@ public class SetFinanceRecords {
 }
 
 
-
+    /**
+     * Method to write a csv file including information of each booking and final bill.
+     * @throws FileNotFoundException
+     */
     public void writeFile() throws FileNotFoundException {
 
         File output = new File("FinanceRecord.csv");
@@ -81,12 +79,16 @@ public class SetFinanceRecords {
 
     }
 
+    /**
+     * Method to pass the data collected from csvs into viewEarnings to be processed/stored. Runs start method in Earnings.
+     */
     public void runViewEarnings(){
 
         ViewEarnings earnings = new ViewEarnings();
 
         earnings.setBookings(bookings );
         earnings.start();
+
 
     }
 
