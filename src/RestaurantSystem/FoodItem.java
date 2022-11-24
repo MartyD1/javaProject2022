@@ -10,10 +10,6 @@ public class FoodItem {
     private double price;
 
 
-    /* Enumerated values are useful to store variables that dont change
-    * Could use similar methods for the status of the food
-    * EG: RECIEVED, PREPARING, READY
-    * https://www.baeldung.com/a-guide-to-java-enums */
 
     public enum Allergens{
         CEREALS("C"),

@@ -15,9 +15,7 @@ public class Booking implements Serializable {
     private BookingTime time;
 
     private Customer customer;
-    private Table table;
     private String numberOfPeople;
-
     private String comments;
 
     public Booking(BookingDate date, BookingTime time, Customer customer, String numberOfPeople, String comments) {

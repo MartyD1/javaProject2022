@@ -16,8 +16,13 @@ import java.util.Scanner;
 
 import static CSV.GeneralCSV.clearCSV;
 import static CSV.GeneralCSV.readCSV;
+import static Person.PersonCSV.createPersonCSV;
+import static Person.PersonCSV.getChosenStaff;
 import static ReservationSystem.BookingsCSV.createBookingsCSV;
 import static ReservationSystem.BookingsCSV.getBookingsForDay;
+import static RestaurantSystem.MenuCSV.createMenuCSV;
+import static RestaurantSystem.OrderCSV.createOrderCSV;
+import static RestaurantSystem.OrderCSV.getFoodType;
 import static RestaurantSystem.TableCSV.createTableCSV;
 
 public class Login {
@@ -42,97 +47,86 @@ public class Login {
             staffMenu();
         } else if (userField.equals("Management") && (passField.equals("Password"))) {
             managementOptions();
-
+        } else if(userField.equals("Owner") && (passField.equals("Password"))) {
+            ownerOptions();
         } else {
-            System.out.println("Incorrect Login");
             new Login();
-
         }
 
 
     }
 
-    private void managementOptions() {
-        System.out.println("(M)anage employees, (V)iew records, (T)ables ");
-        String input = scan.nextLine().toUpperCase();
-        switch (input) {
-            case ("M"):
-                System.out.println("Placeholer, Manage employees");
-                break;
-            case("V"):
-                System.out.println("Placeholder, View records");
-                break;
-            case("T"):
-                TableMenu();
-                break;
-
-        }
-    }
-
-
-    void restaurantMenu() {
-        System.out.println("Would you like to (C)reate restaurants, (V)iew restaurants?");
-        String input = scan.nextLine().toUpperCase();
-        switch (input) {
-            case ("C"):
-                createRestaurant();
-                break;
-            case ("V"):
-                viewRestaurants();
-                break;
-        }
-    }
-
-    public void TableMenu() {
-
-        // Scanner object
-        Scanner scan = new Scanner(System.in);
-
+    private void ownerOptions() throws IOException {
         boolean cont = true;
-
-        while (cont) {
-
-
-            System.out.println("(A)dd table, (R)emove table, (V)iew tables");
+        while(cont){
+            System.out.println("(B)ookings, (R)estaurant, (F)ood, (V)iew records, (Q)uit");
             String command = scan.nextLine();
-
-            if (command.equals("A")) {
-                System.out.println("Enter table number:");
-                String num = scan.nextLine();
-                int parsedNum = Integer.parseInt(num);          // parsing a string value to int to solve a problem where line is printed twice
-
-                System.out.println("Enter number of seats:");
-                String seats = scan.nextLine();
-                int parsedSeats = Integer.parseInt(seats);
-
-                Table table = new Table(parsedNum, parsedSeats);
-                createTableCSV(table);
+            if(command.equals("B")){
+                completeBookingMenu();
 
             } else if (command.equals("R")) {
+                ownerRestaurantManagement();
 
+            } else if (command.equals("F")) {
+                completeMenu();
 
             } else if (command.equals("V")) {
-                ArrayList<String> tables = readCSV("table.csv");
+                Records();
 
-                for (int i = 0; i < tables.size(); i++) {
-                    System.out.println(tables.get(i));
+            } else if (command.equals("Q")) {
+                cont = false;
+            }
+        }
 
-                }
+    }
+
+    private void Records() {
+        readCSV("orderRecord.csv");
+
+        boolean cond = true;
 
 
+    }
+
+    private void ownerRestaurantManagement() throws IOException {
+        boolean cont = true;
+        System.out.println("M)anagement options\nR)eturn");
+        String command = scan.nextLine();
+
+        while(cont){
+            if(command.equals("M")){
+                managementOptions();
+            } else if (command.equals("R")) {
+                cont = false;
             }
 
         }
     }
 
-    /* WORK IN PROGRESS!!! */
-    private void createRestaurant() {
+    private void managementOptions() throws IOException {
+        boolean cont = true;
 
+        while (cont) {
+            System.out.println("(M)anage employees, (V)iew records, (O)rder, (Q)uit system");
+            String command = scan.nextLine();
+
+            if (command.equals("M")) {
+                completeStaffMenu();
+            } else if (command.equals("V")) {
+
+
+            } else if (command.equals("T")) {
+                tableMenu();
+
+            } else if (command.equals("O")) {
+                completeFoodMenu();
+
+            } else if (command.equals("Q")) {
+                cont = false;
+            }
+        }
     }
-
-    private void viewRestaurants() {
-
-    }
+    
 
     private String getChoice(ArrayList<String> choices) {
         if (choices.size() == 0) return null;
@@ -161,15 +155,16 @@ public class Login {
                 "Please enter a command to continue.");
 
         while (cont) {
-            System.out.println("(R)eservations, (F)ood (Q)uit system");
+            System.out.println("(R)eservations, (O)rder, (Q)uit system");
             String command = scan.nextLine().toUpperCase();
 
             if (command.equals("R")) {
                 completeBookingMenu();
-
-            } else if (command.equals("F")) {
-
-            } else if (command.equals("Q")) {
+            }
+            else if (command.equals("O")) {
+                completeFoodMenu();
+            }
+            else if (command.equals("Q")) {
                 cont = false;
             }
 
@@ -278,13 +273,163 @@ public class Login {
 
     private void showBooking() {
         System.out.println("""
-                        Display what date:
-                        (yyyy-mm-dd)""");
+                Display what date:
+                (yyyy-mm-dd)""");
         String showDate = scan.nextLine();
         ArrayList<String> bookingsForDay = getBookingsForDay(showDate);
 
         for (int i = 0; i < bookingsForDay.size(); i++) {
             System.out.println(bookingsForDay.get(i));
+        }
+    }
+
+    
+    
+    
+    
+    private void completeStaffMenu() throws IOException {
+        boolean cont = true;
+
+        while (cont) {
+            System.out.println("A)dd a staff member\nR)emove a staff member\nS)how staff members\nQ)uit system");
+            String command = scan.nextLine().toUpperCase();
+
+            if (command.equals("A")) {
+                addStaff();
+            }
+            else if (command.equals("R")) {
+                removeStaff();
+            }
+            else if (command.equals("S")) {
+                showStaff();
+            }
+            else if (command.equals("Q")) {
+                cont = false;
+            }
+        }
+    }
+
+    private void addStaff() {
+        System.out.println("Enter name: ");
+        String name = scan.nextLine();
+
+        System.out.println("Enter role: ");
+        String role = scan.nextLine();
+
+        System.out.println("Enter login details: ");
+        String login = scan.nextLine();
+
+        System.out.println("Enter password");
+        String password = scan.nextLine();
+
+        System.out.println();
+
+        Staff staff = new Staff(name, role, login, password);
+        createPersonCSV(staff);
+    }
+
+    private void removeStaff() throws IOException{
+        System.out.println("\nEnter staff name to remove: ");
+        String name = scan.nextLine();
+
+        ArrayList<String> allStaff = readCSV("peopleRecord.csv");
+        ArrayList<String> choices = getChosenStaff(name);
+
+        String removeStaff = getChoice(choices);
+        if (removeStaff != null) {
+            allStaff.remove(removeStaff);
+        }
+
+        clearCSV("peopleRecord.csv");
+
+        for (int i = 0; i < allStaff.size(); i++) {
+            Staff tempStaff = new Staff(allStaff.get(i));
+            createPersonCSV(tempStaff);
+        }
+    }
+
+    private void showStaff() {
+        boolean cont = true;
+        while (cont) {
+
+            System.out.println("Show\nS)erver\nM)anager\nC)hef");
+            String command = scan.nextLine().toUpperCase();
+            if (command.equals("S")) {
+                ArrayList<String> chosenStaff = getChosenStaff("Server");
+                for (int i = 0; i < chosenStaff.size(); i++)
+                    System.out.println(chosenStaff.get(i));
+            } else if (command.equals("M")) {
+                ArrayList<String> chosenStaff = getChosenStaff("Manager");
+                for (int i = 0; i < chosenStaff.size(); i++)
+                    System.out.println(chosenStaff.get(i));
+            } else if (command.equals("C")) {
+                ArrayList<String> chosenStaff = getChosenStaff("Chef");
+                for (int i = 0; i < chosenStaff.size(); i++)
+                    System.out.println(chosenStaff.get(i));
+
+                cont=false;
+            }
+        }
+    }
+
+    public void completeMenu() throws IOException {
+        boolean cont = true;
+        Menu menu = new Menu();
+        while (cont) {
+            System.out.println("A)dd menu item\nR)emove menu time\nS)how menu\nQ)uit system");
+            String command = scan.nextLine().toUpperCase();
+
+            if (command.equals("A")) {
+                System.out.println("Enter type (S/M/D): ");
+                String type = scan.nextLine();
+
+                System.out.println("Enter food name: ");
+                String name = scan.nextLine();
+
+                System.out.println("Enter description: ");
+                String description = scan.nextLine();
+
+                System.out.println("Enter price: ");
+                double price = Double.parseDouble(scan.nextLine());
+
+                System.out.println();
+
+                FoodItem newItem = new FoodItem(type.charAt(0), name, description, price);
+
+                createMenuCSV(newItem);
+                menu.addToMenu(newItem);
+
+            }
+            else if (command.equals("R")) {
+                System.out.println("List of menu items");
+                ArrayList<String> menuItems = readCSV("menuRecord.csv");
+
+                String cancelItem = getChoice(menuItems);
+                if (cancelItem != null) {
+                    menuItems.remove(cancelItem);
+                }
+
+                clearCSV("menuRecord.csv");
+
+                for (int i = 0; i < menuItems.size(); i++) {
+                    FoodItem tempItem = new FoodItem(menuItems.get(i));
+                    createMenuCSV(tempItem);
+                }
+
+
+            }
+            else if (command.equals("S")) {
+                ArrayList<String> menuItems = readCSV("menuRecord.csv");
+
+                for (int i = 0; i < menuItems.size(); i++) {
+                    System.out.println(menuItems.get(i));
+                }
+
+
+            }
+            else if (command.equals("Q")) {
+                cont = false;
+            }
         }
     }
 

@@ -1,7 +1,10 @@
-Date, Time, Name, Group size, Phone number, Comments
-2022-12-13, 12:30,   Jimmy,   4,   123123332,   I like trains
-2022-12-14, 14:0,  Peter,  4,  123123123,  Muchos gracias
-2022-12-12, 12:30, Noel, 3, 0837482193, Extra beans
-2022-12-1, 12:30, Noeleen, 6, 123123123, Beans make me fart
-2020-12-12, 10:10, Val, 5, 0892271818, pasta
-2022-12-1, 12:0, Marty, 1, 1231, na
+Date, Time, Customer Name, Group size, Phone Number, Comments
+2022-12-13, 12:30,   Jimmy,     4,     123123332,     I like trains
+2022-12-14, 14:0,    Peter,    4,    123123123,    Muchos gracias
+2022-12-12, 12:30,   Noel,   3,   0837482193,   Extra beans
+2022-12-1, 12:30,   Noeleen,   6,   123123123,   Beans make me fart
+2020-12-12, 10:10,   Val,   5,   0892271818,   pasta
+2022-12-1, 12:0,   Marty,   1,   1231,   na
+2022-12-13, 12:30,   Ginny,   5,   123123123,   ff
+2022-12-23, 12:30,  Bob,  34343434343,  5,  gg
+2022-12-12, 14:0, Greg Heffley, 4, 123123123, beans

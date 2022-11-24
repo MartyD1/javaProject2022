@@ -7,24 +7,23 @@ import static CSV.GeneralCSV.readCSV;
 
 public class Table {
 
-
-    private static int tableNumber;
-    private static int numOfSeats;
+//data fields
+    private static String tableNumber;
+    private static String numOfSeats;
 
 
     //create a table
-    public Table(int tableNumber,int numOfSeats){
+    public Table(String tableNumber,String numOfSeats){
         this.tableNumber=tableNumber;
         this.numOfSeats=numOfSeats;
     }
 
 
     //get a table number
-    public static int getTableNumber() {
+    public static String getTableNumber() {
         return tableNumber;
     }
-
-    public static int getTableNoOfSeats(){
+    public static String getTableNoOfSeats(){
         return numOfSeats;
     }
 

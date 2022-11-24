@@ -4,6 +4,8 @@ import java.util.StringTokenizer;
 
 public class Staff extends Person {
 
+    //data fields role,logindetails and password of type Sting
+    private String role;
     private String loginDetails; // two datafields for login system
     private String password;
 
