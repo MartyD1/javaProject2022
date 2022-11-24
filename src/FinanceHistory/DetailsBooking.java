@@ -9,7 +9,7 @@ public class DetailsBooking {
 
     private final String phoneNumber;
 
-    private final double finalBill;
+    private double finalBill;
 
     public DetailsBooking(String booking){
         //booking format-tableName, day, time
@@ -18,7 +18,6 @@ public class DetailsBooking {
         day= str[0] ;
         bookingTime= str[1] ;
         phoneNumber=str[3];
-        finalBill = 0;      //Don't have any final bill
     }
 
     public String getName(){
@@ -35,6 +34,10 @@ public class DetailsBooking {
 
     public String getPhoneNumber(){
         return phoneNumber;
+    }
+
+    public void setFinalBill(double finalBill){
+        this.finalBill=finalBill;
     }
 
     public double getFinalBill(){

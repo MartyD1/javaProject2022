@@ -131,7 +131,7 @@ public class ViewEarnings {        //class to see output in terminal to view pro
         for (DetailsBooking record : records) {
             calender.addBooking(record);
         }
-        //calender.showBooking(); //uncomment method from Calender class  and call to see all bookings added
+//        calender.showBooking(); //uncomment method from Calender class  and call to see all bookings added
     }
 
     public double billOnDay(int y, int m, int d){
