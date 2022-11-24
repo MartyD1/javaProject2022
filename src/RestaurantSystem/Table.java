@@ -1,7 +1,7 @@
 package RestaurantSystem;
 //imports
 import java.util.Scanner;
-
+import java.util.StringTokenizer;
 import static CSV.GeneralCSV.readCSV;
 //public table class
 public class Table {
@@ -15,6 +15,12 @@ public class Table {
     public Table(String tableNumber,String numOfSeats){
         this.tableNumber=tableNumber;
         this.numOfSeats=numOfSeats;
+    }
+
+    public Table(String line) {
+        StringTokenizer token = new StringTokenizer(line, ",");
+        this.tableNumber = token.nextToken();
+        this.numOfSeats = token.nextToken();
     }
 
 

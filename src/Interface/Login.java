@@ -1,15 +1,18 @@
 package Interface;
 
+import FinanceHistory.DetailsBooking;
+import FinanceHistory.SetFinanceRecords;
 import Person.Customer;
 import Person.Owner;
+import Person.Staff;
 import ReservationSystem.Booking;
 import ReservationSystem.BookingCalendar;
 import ReservationSystem.BookingDate;
 import ReservationSystem.BookingTime;
-import RestaurantSystem.Menu;
-import RestaurantSystem.Restaurant;
-import RestaurantSystem.Table;
+import RestaurantSystem.*;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,7 +45,7 @@ public class Login {
         passField = scan.nextLine();
 
         if (userField.equals("Guest") && passField.equals("Password")) {
-            GuestLogin();
+            guestLogin();
         } else if (userField.equals("Staff") && (passField.equals("Password"))) {
             staffMenu();
         } else if (userField.equals("Management") && (passField.equals("Password"))) {
@@ -52,8 +55,6 @@ public class Login {
         } else {
             new Login();
         }
-
-
     }
 
     private void ownerOptions() throws IOException {
@@ -143,12 +144,6 @@ public class Login {
         }
     }
 
-
-    private void chefOptions() {
-        System.out.println("Chef options");
-    }
-
-
     private void staffMenu() throws IOException {
         boolean cont = true;
         System.out.println("Welcome to the Staff Menu!\n" +
@@ -171,7 +166,7 @@ public class Login {
         }
     }
 
-    void GuestLogin() {
+    void guestLogin() {
         boolean cont = true;
         System.out.println("Welcome to the Yum Restaurant Chain!\n" +
                 "Please enter a command to continue.");
@@ -187,7 +182,7 @@ public class Login {
                 showMenu();
                 System.out.println();
             } else if (command.equals("P")) {
-                System.out.println("WIP");
+                pay();
                 System.out.println();
             } else if (command.equals("Q")) {
                 cont = false;
@@ -195,11 +190,187 @@ public class Login {
         }
     }
 
+    private void pay() {
+        boolean cont = true;
+
+        while (cont) {
+            System.out.println("Enter name to pay: ");
+            String name = scan.nextLine();
+
+            ArrayList<String> orderRecord = readCSV("FinanceRecord.csv");
+            for (int i = 0; i < orderRecord.size(); i++) {
+                DetailsBooking details = new DetailsBooking(orderRecord.get(i));
+
+                if (name.equals((details.getName().trim()))) {
+                    System.out.println(details);
+                }
+            }
+
+            System.out.println("Agree to pay?");
+            System.out.println("(Y)/(N)");
+            String agreement = scan.nextLine();
+            cont = false;
+        }
+    }
+
+    
+    
+
+
+    public void  completeFoodMenu() throws IOException {
+        boolean cont = true;
+
+        while (cont) {
+            System.out.println("A)dd an order\nC)ancel order\nQ)uit");
+            String command = scan.nextLine().toUpperCase();
+
+            if (command.equals("A"))
+            {
+                addOrder();
+            }
+            else if (command.equals("C"))
+            {
+                cancelOrder();
+            }
+            else if (command.equals("Q"))
+            {
+                cont = false;
+            }
+        }
+    }
+
+    private void addOrder() {
+        ArrayList<String> starterArray = getFoodType("S");
+        ArrayList<String> mainArray = getFoodType("M");
+        ArrayList<String> dessertArray = getFoodType("D");
+        ArrayList<String> beverageArray = getFoodType("B");
+
+        System.out.println("Enter customers name: ");
+        String name = scan.nextLine();
+        System.out.println("Enter how many people: ");
+        String numString = scan.nextLine();
+        int numPeople = Integer.parseInt(numString);
+
+
+        double finalBill = 0;
+        for (int i = 0; i < numPeople; i++) {
+            String starterChoice = getChoice(starterArray);
+            FoodItem starter = new FoodItem(starterChoice);
+
+            double price = starter.getPrice();
+            finalBill += price;
+        }
+        for (int i = 0; i < numPeople; i++) {
+            String mainChoice = getChoice(mainArray);
+            FoodItem main = new FoodItem(mainChoice);
+
+            double price = main.getPrice();
+            finalBill += price;
+        }
+        for (int i = 0; i < numPeople; i++) {
+            String dessertChoice = getChoice(dessertArray);
+            FoodItem dessert = new FoodItem(dessertChoice);
+
+            double price = dessert.getPrice();
+            finalBill += price;
+        }
+        for (int i = 0; i < numPeople; i++) {
+            String beverageChoice = getChoice(beverageArray);
+            FoodItem beverage = new FoodItem(beverageChoice);
+
+            double price = beverage.getPrice();
+            finalBill += price;
+        }
+        System.out.println(finalBill);
+        Order addOrder = new Order(name, finalBill);
+        createOrderCSV(addOrder);
+    }
+
+    private void cancelOrder() throws IOException {
+        System.out.println("Select order to remove: ");
+        ArrayList<String> allOrders = readCSV("orderRecord.csv");
+
+        String removeOrder = getChoice(allOrders);
+        if (removeOrder != null) {
+            allOrders.remove(removeOrder);
+        }
+        clearCSV("orderRecord.csv");
+
+        for (int i = 0; i < allOrders.size(); i++) {
+            Order tempOrder = new Order(allOrders.get(i));
+            createOrderCSV(tempOrder);
+        }
+    }
+
+
+
+
+    public void tableMenu() throws IOException {
+        boolean cont = true;
+        while (cont) {
+            System.out.println("A)dd table\nR)emove table\nV)iew tables\nR)eturn");
+            String command = scan.nextLine().toUpperCase();
+
+            if (command.equals("A")) {
+                addTable();
+
+            } else if (command.equals("R")) {
+                removeTable();
+
+            } else if (command.equals("V")) {
+                viewTables();
+
+            } else if (command.equals("Q")) {
+                cont = false;
+            }
+        }
+    }
+    
+    private void addTable() {
+        System.out.println("Enter table number:");
+        String num = scan.nextLine();
+
+        System.out.println("Enter number of seats:");
+        String seats = scan.nextLine();
+
+        Table table = new Table(num, seats);
+        createTableCSV(table);
+    }
+
+    private void removeTable() throws IOException { // marty
+        System.out.println("Select table to remove: ");
+        ArrayList<String> allTables = readCSV("table.csv");
+
+        String removeTable = getChoice(allTables);
+        if (removeTable != null) {
+            allTables.remove(removeTable);
+        }
+        clearCSV("table.csv");
+
+        for (int x = 0; x < allTables.size(); x++) {
+            Table tempTable = new Table(allTables.get(x));
+            createTableCSV(tempTable);
+
+        }
+    }
+    
+    private void viewTables() {
+        ArrayList<String> tables = readCSV("table.csv");
+
+        for (int i = 0; i < tables.size(); i++) {
+            System.out.println(tables.get(i));
+        }
+    }
+
+    
+    
+    
+    
     public void completeBookingMenu() throws IOException {
         boolean cont = true;
         BookingCalendar calendar = new BookingCalendar();
         while (cont) {
-            System.out.println("A)dd booking\nC)ancel booking\nS)how booking\nQ)uit system");
+            System.out.println("A)dd booking\nC)ancel booking\nS)how booking\nR)eturn");
             String command = scan.nextLine().toUpperCase(); // if user inputs lowercase command, it will still be read
 
             if (command.equals("A")) { // add booking function follows
@@ -211,7 +382,7 @@ public class Login {
             } else if (command.equals("S")) {
                 showBooking();
 
-            } else if (command.equals("Q")) {
+            } else if (command.equals("R")) {
                 cont = false;
             }
         }
@@ -230,8 +401,12 @@ public class Login {
         String timeString = scan.nextLine();
         BookingTime t = new BookingTime(timeString);
 
-        System.out.println("Customer: ");
-        Customer customer = new Customer(scan.nextLine(), scan.nextLine());
+        System.out.println("Name: ");
+        String nameString = scan.nextLine();
+
+        System.out.println("Phone number: ");
+        String phoneString = scan.nextLine();
+        Customer customer = new Customer(nameString, phoneString);
 
         System.out.println("Number of guests: ");
         String numberOfGuests = scan.nextLine();
@@ -438,6 +613,7 @@ public class Login {
         ArrayList<String> menuItems = readCSV("menuRecord.csv");
 
         for (int i = 0; i < menuItems.size(); i++) {
-            System.out.println(menuItems.get(i));}
+            System.out.println(menuItems.get(i));
+        }
     }
 }

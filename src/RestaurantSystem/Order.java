@@ -1,7 +1,8 @@
 package RestaurantSystem;
+//imports
+import java.util.StringTokenizer;
 
-import java.util.ArrayList;
-
+//public order class
 public class Order {
 
     //data fields

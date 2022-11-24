@@ -1,5 +1,7 @@
 package FinanceHistory;
 
+import java.util.StringTokenizer;
+
 public class DetailsBooking {
     private final String name;
     private final String day;
