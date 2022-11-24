@@ -20,7 +20,10 @@ public class Table {
         this.tableNumber=tableNumber;
         this.numOfSeats=numOfSeats;
     }
-
+    /**
+     * Method to breakdown line into a Order object using StringTokenizer
+     * @param line a line containing all data to be broken down by StringTokenizer
+     */
     public Table(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
         this.tableNumber = token.nextToken();
