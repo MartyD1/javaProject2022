@@ -1,25 +1,41 @@
 package Person;
-//public class person superclass for person classes
+
+/**
+ * superclass to construct a person
+ */
 public class Person{
     //private data field name of type string
     private String name;
 
-    //person constructor
+
+    /**
+     * person constructor
+     * @param name- name of person
+     */
     public Person(String name){
         this.name = name;
     }
 
-    //set name method
+
+    /**
+     * @param name-name of person
+     */
     public void setName(String name){
         this.name=name;
     }
 
-    //get name method
+
+    /**
+     * @return name-name of person
+     */
     public String getName(){
         return name;
     }
 
-//toString method for person
+
+    /**
+     * @return String format for person
+     */
     @Override
     public String toString() {
         return String.format("Name: %s", getName());

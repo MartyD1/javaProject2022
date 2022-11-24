@@ -1,7 +1,6 @@
 package RestaurantSystem;
 
 import CSV.GeneralCSV;
-
 import java.io.*;
 
 public class  MenuCSV extends GeneralCSV {

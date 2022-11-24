@@ -1,23 +1,20 @@
 package ReservationSystem;
-
+//imports
 import java.io.Serializable;
 import java.util.StringTokenizer; //StringTokenizer splits a String into separate tokens
 
-/**
- * Class to construct a BookingDate object that stores the day, month and year of the booking
- */
 
+/**
+ * class that implements Serializable to construct a booking date
+ */
 public class BookingDate implements Serializable {
 
+    //datafields
     private int year;
     private int month;
     private int day;
 
-    public BookingDate(int year, int month, int day) { // redundant constructor, may be used for testing
-        this.year = year;
-        this.month = month;
-        this.day = day;
-    }
+
 
     public BookingDate(String line) { //remember line format is (yyyy-mm-dd)
         StringTokenizer str = new StringTokenizer(line, "-"); //converting String line into separate tokens
@@ -26,15 +23,20 @@ public class BookingDate implements Serializable {
         this.day = Integer.parseInt(str.nextToken());
     }
 
-    public int getYear() {
-        return year;
-    }
-    public int getMonth() {
-        return month;
-    }
-    public int getDay() {
-        return day;
-    }
+    /**
+     * @return year-year of booking
+     */
+    public int getYear() {return year;}
+
+    /**
+     * @return month- month of booking
+     */
+    public int getMonth() {return month;}
+
+    /**
+     * @return day-day of booking
+     */
+    public int getDay() {return day;}
 
     @Override
     public boolean equals(Object obj) {
@@ -53,6 +55,9 @@ public class BookingDate implements Serializable {
         return true;
     }
 
+    /**
+     * @return String format forbooking date
+     */
     @Override
     public String toString() {
         return String.format("%d-%d-%d", getYear(), getMonth(), getDay());

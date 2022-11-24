@@ -1,14 +1,12 @@
 package ReservationSystem;
-
-import Person.Customer;
-
-
 //imports
+import Person.Customer;
 import java.io.Serializable;
 import java.util.StringTokenizer;
 
+
 /**
- * Class to create a booking object
+ * class that implements serializable to construct a booking
  */
 public class Booking implements Serializable {
 //data fields
@@ -18,13 +16,13 @@ public class Booking implements Serializable {
     private String numberOfPeople;
     private String comments;
 
-
     /**
-     * @param date
-     * @param time
-     * @param customer
-     * @param numberOfPeople
-     * @param comments
+     * booking constructor
+     * @param date- date of booking
+     * @param time- time of booking
+     * @param customer- customer who is booking
+     * @param numberOfPeople-number of people attending
+     * @param comments-extra comments for booking
      */
     public Booking(BookingDate date, BookingTime time, Customer customer, String numberOfPeople,  String comments) {
         this.date = date;
@@ -32,12 +30,8 @@ public class Booking implements Serializable {
         this.customer=customer;
         this.numberOfPeople = numberOfPeople;
         this.comments = comments;
-
     }
 
-    /**
-     * @param line
-     */
     public Booking(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
         this.date = new BookingDate(token.nextToken());
@@ -47,19 +41,42 @@ public class Booking implements Serializable {
         this.comments = token.nextToken();
     }
 
+
+    /**
+     * @return date-date of booking
+     */
     public BookingDate getDate() {
         return date;
     }
+
+    /**
+     * @return time-time of booking
+     */
     public BookingTime getTime() {
         return time;
     }
+
+    /**
+     * @return name-name of customer booking
+     */
     public String getName() {
         return customer.getName();
     }
+    /**
+     * @return  phoneNumber-phoneNumber of customer booking
+     */
     public String getPhoneNumber() {return customer.getPhoneNumber();}
+
+    /**
+     * @return numberOfPeople- number of people attending booking
+     */
     public String getNumberOfPeople() {
         return numberOfPeople;
     }
+
+    /**
+     * @return comments-extra comments for booking
+     */
     public String getComments() {
         return comments;
     }

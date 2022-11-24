@@ -1,10 +1,10 @@
 package RestaurantSystem;
-
+//imports
 import CSV.GeneralCSV;
-
 import java.io.*;
 import java.util.ArrayList;
 
+//ordercsv extends generalCSV
 public class  OrderCSV extends GeneralCSV {
     public static void createOrderCSV(Order order) {
         try {

@@ -1,5 +1,5 @@
 package RestaurantSystem;
-
+//imports
 import java.util.StringTokenizer;
 
 
@@ -15,10 +15,10 @@ public class FoodItem {
     private double price;
 
     /**
-     * @param type
-     * @param name
-     * @param description
-     * @param price
+     * @param type -type of fooditem starter,main...etc...
+     * @param name -name of food item
+     * @param description -decription of fooditem
+     * @param price- price of fooditem
      */
     //fooditem constructor
     public FoodItem(char type, String name, String description, double price){
@@ -39,60 +39,44 @@ public class FoodItem {
         this.price = Double.parseDouble(token.nextToken());
     }
 
-
     /*      Getters       */
 
     /**
-     * @return type
+     * @return type-type of fooditem starter,main...etc...
      */
     public char getType(){
         return type;
     }
 
     /**
-     * @return description
+     * @return description -decription of fooditem
      */
     public String getDescription(){
         return description;
     }
 
     /**
-     * @return name
+     * @return name -name of food item
      */
     public String getName() {
         return name;
     }
 
     /**
-     * @return price
+     * @return price- price of fooditem
      */
     public double getPrice(){
         return price;
     }
 
+    /**
+     * @param name-name of food item
+     */
     /*      Setters       */
-
-    /**
-     * @param type
-     */
-    public void setType(char type){
-        this.type = type;
-    }
-
-    /**
-     * @param description
-     */
-    public void setDescription(String description){
-        this.description = description;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
 
 
     //tostring method for fooditem
@@ -101,6 +85,4 @@ public class FoodItem {
         return String.format("\n%s: %s\n%s: %s\n%s: %s\n%s: %.2f\n\n", "Type", getType(),
                 "Name", getName(), "Description", getDescription(), "Price", getPrice());
     }
-
-
 }

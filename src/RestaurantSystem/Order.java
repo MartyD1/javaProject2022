@@ -2,19 +2,26 @@ package RestaurantSystem;
 //imports
 import java.util.StringTokenizer;
 
-//public order class
+
+/**
+ * class to create an order
+ */
 public class Order {
 
     //data fields
     private String name;
     private double finalBill;
 
-    //order constructor
+
+    /**
+     * order constructor
+     * @param name -name of person order is for
+     * @param finalBill-final bill of order
+     */
     public Order(String name, double finalBill) {
         this.name = name;
         this.finalBill = finalBill;
     }
-
 
     public Order(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
@@ -22,10 +29,16 @@ public class Order {
         this.finalBill = Double.parseDouble((token.nextToken()).trim());
     }
 
-    //get methods
+    /**
+     * @return name-name of person order is for
+     */
     public String getName() {
         return name;
     }
+
+    /**
+     * @return  finalBill-final bill of order
+     */
     public double getFinalBill() {
         return finalBill;
     }

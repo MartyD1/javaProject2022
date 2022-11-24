@@ -1,25 +1,36 @@
 package Person;
 
-//customer subclass of person
+
+/**
+ * class that extends person to construct a customer
+ */
 public class Customer extends Person {
 
-    //private data field phonenumber of type string
+    //private data field phoneNumber of type string
     private String phoneNumber;
 
-    //customer constructor
-    public Customer(String name, String phoneNumber){
+    /**
+     * Customer constructor
+     * @param name - name of customer
+     * @param phoneNumber- phoneNumber of customer
+     */
+       public Customer(String name, String phoneNumber){
         super(name);
         this.phoneNumber=phoneNumber;
     }
 
-    //get phonenumber
+
+    /**
+     * @return phoneNumber-phone number of customer
+     */
     public String getPhoneNumber() {
         return phoneNumber;
     }
-//set phonenumber
-public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
-    //customer tostring method
+
+    /**
+     * @return String format of customer
+     */
     @Override
     public String toString() {
         return String.format("%s,\nPhoneNumber: %s", super.toString(),getPhoneNumber());

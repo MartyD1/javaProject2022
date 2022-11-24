@@ -1,5 +1,5 @@
 package Interface;
-
+//class\other imports
 import FinanceHistory.DetailsBooking;
 import FinanceHistory.SetFinanceRecords;
 import Person.Customer;
@@ -10,15 +10,10 @@ import ReservationSystem.BookingCalendar;
 import ReservationSystem.BookingDate;
 import ReservationSystem.BookingTime;
 import RestaurantSystem.*;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+//CSV imports
 import static CSV.GeneralCSV.clearCSV;
 import static CSV.GeneralCSV.readCSV;
 import static Person.PersonCSV.createPersonCSV;
@@ -30,6 +25,10 @@ import static RestaurantSystem.OrderCSV.createOrderCSV;
 import static RestaurantSystem.OrderCSV.getFoodType;
 import static RestaurantSystem.TableCSV.createTableCSV;
 
+
+/**
+ * class to create a login
+ */
 public class Login {
     String userField;
     String passField;
@@ -40,6 +39,10 @@ public class Login {
     Restaurant restaurant = new Restaurant("Yum Restaurant", owner);
     Scanner scan = new Scanner(System.in);
 
+    /**
+     * Login-gives login options for  guest staff management or owner
+     * @throws IOException
+     */
     Login() throws IOException {
         System.out.println("Enter Username: ");
         userField = scan.nextLine();
@@ -59,6 +62,11 @@ public class Login {
         }
     }
 
+
+    /**
+     * ownerOptions-gives options to make a booking,give restaurant management options,menu options or quit
+     * @throws IOException
+     */
     private void ownerOptions() throws IOException {
         boolean cont = true;
         while (cont) {
@@ -125,6 +133,10 @@ public class Login {
         }
     }
 
+    /**
+     * managementOptions-gives options to manage employees, view records,order or quit system
+     * @throws IOException
+     */
     private void managementOptions() throws IOException {
         boolean cont = true;
 
@@ -165,6 +177,10 @@ public class Login {
         }
     }
 
+    /**
+     * staffMenu-gives options to make a reservation, order quit system
+     * @throws IOException
+     */
     private void staffMenu() throws IOException {
         boolean cont = true;
         System.out.println("Welcome to the Staff Menu!\n" +
@@ -187,6 +203,9 @@ public class Login {
         }
     }
 
+    /**
+     * guestLogin-gives options to book a reservation, view menu,pay a bill or quit system
+     */
     void guestLogin() {
         boolean cont = true;
         System.out.println("Welcome to the Yum Restaurant Chain!\n" +
@@ -211,6 +230,9 @@ public class Login {
         }
     }
 
+    /**
+     * pay-for customer to pay their bill
+     */
     private void pay() {
         boolean cont = true;
 
@@ -235,6 +257,10 @@ public class Login {
     }
 
 
+    /**
+     * completeFoodMenu- gives options to add an order, cancel an order or quit the system
+     * @throws IOException
+     */
     public void  completeFoodMenu() throws IOException {
         boolean cont = true;
 
@@ -257,6 +283,9 @@ public class Login {
         }
     }
 
+    /**
+     * addOrder-add to order
+     */
     private void addOrder() {
         ArrayList<String> starterArray = getFoodType("S");
         ArrayList<String> mainArray = getFoodType("M");
@@ -304,6 +333,10 @@ public class Login {
         createOrderCSV(addOrder);
     }
 
+    /**
+     * cancelOrder-to cancel an order
+     * @throws IOException
+     */
     private void cancelOrder() throws IOException {
         System.out.println("Select order to remove: ");
         ArrayList<String> allOrders = readCSV("orderRecord.csv");
@@ -320,9 +353,10 @@ public class Login {
         }
     }
 
-
-
-
+    /**
+     * tableMenu-gives options to add a table, remove a table view tables or return
+     * @throws IOException
+     */
     public void tableMenu() throws IOException {
         boolean cont = true;
         while (cont) {
@@ -358,6 +392,10 @@ public class Login {
         createTableCSV(table);
     }
 
+    /**
+     * removeTable-to remove a table
+     * @throws IOException
+     */
     private void removeTable() throws IOException { // marty
         System.out.println("Select table to remove: ");
         ArrayList<String> allTables = readCSV("table.csv");
@@ -412,6 +450,9 @@ public class Login {
         }
     }
 
+    /**
+     * addBooking-to add a booking
+     */
     private void addBooking() {
         System.out.println("""
                 Date of booking
@@ -447,6 +488,10 @@ public class Login {
         createBookingsCSV(booking); // added booking to CSV file
     }
 
+    /**
+     * cancelBooking-to cancel a booking
+     * @throws IOException
+     */
     private void cancelBooking() throws IOException {
         System.out.println("\nEnter booking details to cancel: ");
         System.out.println("""
@@ -470,6 +515,9 @@ public class Login {
         }
     }
 
+    /**
+     * showBooking-to show a booking
+     */
     private void showBooking() {
         System.out.println("""
                 Display what date:
@@ -508,6 +556,9 @@ public class Login {
         }
     }
 
+    /**
+     * addStaff- to add a staff member
+     */
     private void addStaff() {
         System.out.println("Enter name: ");
         String name = scan.nextLine();
@@ -527,6 +578,10 @@ public class Login {
         createPersonCSV(staff);
     }
 
+    /**
+     * removeStaff- to remove a staff member
+     * @throws IOException
+     */
     private void removeStaff() throws IOException{
         System.out.println("\nEnter staff name to remove: ");
         String name = scan.nextLine();
@@ -547,6 +602,9 @@ public class Login {
         }
     }
 
+    /**
+     * showStaff-show a staff member
+     */
     private void showStaff() {
         boolean cont = true;
         while (cont) {
@@ -571,6 +629,10 @@ public class Login {
         }
     }
 
+    /**
+     * completeMenu-gives options to add a menu item,show menu or quit system
+     * @throws IOException
+     */
     public void completeMenu() throws IOException {
         boolean cont = true;
         Menu menu = new Menu();
@@ -632,7 +694,9 @@ public class Login {
         }
     }
 
-
+    /**
+     *showMenu- show the menu
+     */
     public void showMenu() {
         ArrayList<String> menuItems = readCSV("menuRecord.csv");
 
@@ -654,6 +718,4 @@ public class Login {
         files.runViewEarnings();
 
     }
-
-
 }

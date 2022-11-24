@@ -1,13 +1,19 @@
 package Person;
-
+//imports
 import CSV.GeneralCSV;
-
 import java.io.*;
 import java.util.ArrayList;
 
+/**
+ * class extends GeneralCSV to construct a PersonCSV
+ */
 public class PersonCSV extends GeneralCSV {
 
 
+    /**
+     * createPersonCSV- creates a person csv
+     * @param person-person to
+     */
     public static void createPersonCSV(Person person) {
         try {
             File peopleRecord = new File("peopleRecord.csv");

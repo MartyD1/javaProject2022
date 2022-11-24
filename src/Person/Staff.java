@@ -2,7 +2,10 @@ package Person;
 
 import java.util.StringTokenizer;
 
-//staff is a subclass of peron
+
+/**
+ * class that extends person to construct a staff member
+ */
 public class Staff extends Person {
 
     //data fields role,logindetails and password of type Sting
@@ -10,7 +13,14 @@ public class Staff extends Person {
     private String loginDetails; // two datafields for login system
     private String password;
 
-//staff constructor
+
+    /**
+     * Staff constructor
+     * @param name - name of staff member
+     * @param role- role of staff member
+     * @param loginDetails- login details of staff memeber
+     * @param password- password of staff member
+     */
     public Staff(String name,String role, String loginDetails, String password){
         super(name);
         this.role = role;
@@ -29,29 +39,30 @@ public class Staff extends Person {
         this.password = token.nextToken();
     }
 
-//get and set methods for role, logindetails and password
+
+    /**
+     * @return role-role of staff memeber
+     */
     public String getRole() {return role;}
 
-    public void setRole(String role) {this.role = role;}
-
+    /**
+     * @return loginDetails-login details of staff member
+     */
     public String getLoginDetails() {
         return loginDetails;
     }
 
-    public void setLoginDetails(String loginDetails) {
-        this.loginDetails = loginDetails;
-    }
-
+    /**
+     * @return password-password of staff member
+     */
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
-
-//to string method for staff
+    /**
+     * @return String format of staff
+     */
     @Override
     public String toString() {
         return String.format("%s, %s, %s, %s", super.toString(), getLoginDetails(), getPassword());

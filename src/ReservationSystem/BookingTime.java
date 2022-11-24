@@ -1,5 +1,5 @@
 package ReservationSystem;
-
+//imports
 import java.io.Serializable;
 import java.util.StringTokenizer;
 
@@ -10,10 +10,6 @@ public class BookingTime implements Serializable {
     private int hours;
     private int minutes;
 
-    public BookingTime(int hours, int minutes) { // redundant constructor, may be used for testing
-        this.hours = hours;
-        this.minutes = minutes;
-    }
 
     public BookingTime(String line) {
         StringTokenizer str = new StringTokenizer(line, ":"); //converting String line into separate tokens
@@ -21,13 +17,24 @@ public class BookingTime implements Serializable {
         this.minutes = Integer.parseInt(str.nextToken());
     }
 
+
+    /**
+     * @return hours-hours of booking
+     */
     public int getHours() {
         return hours;
     }
+
+    /**
+     * @return minutes-minutes of booking
+     */
     public int getMinutes() {
         return minutes;
     }
 
+    /**
+     * @return String format for bookimng time
+     */
     public String toString() {
         return String.format("%d:%d", getHours(), getMinutes());
     }
