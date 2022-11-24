@@ -1,4 +1,6 @@
 Name, Role, Login, Password
-Noel, Server, noelog, password,  Server,  noelog,  password
-Ronan, Server, ronand, protein,  Server,  ronand,  protein
-Val, Chef, valclunye, password,  Chef,  valclunye,  password
+Noel, Server, noelog, password
+Ronan, Server, ronand, protein
+Val, Chef, valclunye, password
+Marty, Manager, martyd, apparently
+Jane, Server, janelogin, janepassword

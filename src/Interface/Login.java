@@ -52,7 +52,7 @@ public class Login {
             staffMenu();
         } else if (userField.equals("Management") && (passField.equals("Password"))) {
             managementOptions();
-        } else if(userField.equals("Owner") && (passField.equals("Password"))) {
+        } else if (userField.equals("Owner") && (passField.equals("Password"))) {
             ownerOptions();
         } else {
             new Login();
@@ -61,10 +61,10 @@ public class Login {
 
     private void ownerOptions() throws IOException {
         boolean cont = true;
-        while(cont){
-            System.out.println("(B)ookings, (R)estaurant, (F)ood, (V)iew records, (Q)uit");
+        while (cont) {
+            System.out.println("(B)ookings, (R)estaurant, (F)ood, (Q)uit");
             String command = scan.nextLine();
-            if(command.equals("B")){
+            if (command.equals("B")) {
                 completeBookingMenu();
 
             } else if (command.equals("R")) {
@@ -73,9 +73,6 @@ public class Login {
             } else if (command.equals("F")) {
                 completeMenu();
 
-            } else if (command.equals("V")) {
-                Records();
-
             } else if (command.equals("Q")) {
                 cont = false;
             }
@@ -83,26 +80,48 @@ public class Login {
 
     }
 
-    private void Records() {
-        readCSV("orderRecord.csv");
-
-        boolean cond = true;
-
-
-    }
-
-    private void ownerRestaurantManagement() throws IOException {
+    /**
+     * recordsMenu- gives options to view records/profits or return
+     * @throws IOException
+     */
+    private void recordsMenu() throws IOException{
         boolean cont = true;
-        System.out.println("M)anagement options\nR)eturn");
-        String command = scan.nextLine();
+        while (cont) {
+            System.out.println("V)iew records\nP)rofits\nR)eturn");
+            String command = scan.nextLine();
 
-        while(cont){
-            if(command.equals("M")){
-                managementOptions();
+            if (command.equals("V")) {
+                ArrayList<String> financeRecord = readCSV("FinanceRecord.csv");
+                for (int i = 0; i < financeRecord.size(); i++) {
+                    System.out.println(financeRecord.get(i));
+                }
+            } else if (command.equals("P")) {
+                returnProfits();
             } else if (command.equals("R")) {
                 cont = false;
             }
+        }
+    }
 
+
+    /**
+     * ownerRestaurantManagement-gives option for management options or to return
+     * @throws IOException
+     */
+    private void ownerRestaurantManagement() throws IOException {
+        boolean cont = true;
+
+
+        while(cont){
+            System.out.println("M)anagement options\nR)eturn");
+            String command = scan.nextLine();
+
+            if(command.equals("M")){
+                managementOptions();
+
+            } else if (command.equals("R")) {
+                cont = false;
+            }
         }
     }
 
@@ -110,13 +129,13 @@ public class Login {
         boolean cont = true;
 
         while (cont) {
-            System.out.println("(M)anage employees, (V)iew records, (O)rder, (Q)uit system");
+            System.out.println("M)anage employees\nV)iew records\nO)rder\nQ)uit system");
             String command = scan.nextLine();
 
             if (command.equals("M")) {
                 completeStaffMenu();
             } else if (command.equals("V")) {
-
+                recordsMenu();
 
             } else if (command.equals("T")) {
                 tableMenu();
@@ -208,9 +227,9 @@ public class Login {
                 }
             }
 
-            System.out.println("Agree to pay?");
-            System.out.println("(Y)/(N)");
-            String agreement = scan.nextLine();
+            System.out.println("Cash or Card?");
+            System.out.println("(C)/(D)");
+            String payMethod = scan.nextLine();
             cont = false;
         }
     }
