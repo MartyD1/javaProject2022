@@ -11,8 +11,8 @@ public class PersonCSV extends GeneralCSV {
 
 
     /**
-     * createPersonCSV- creates a person csv
-     * @param person-person to
+     * Method creates/adds to a CSV to store data on People objects
+     * @param person    Person object
      */
     public static void createPersonCSV(Person person) {
         try {
@@ -38,6 +38,10 @@ public class PersonCSV extends GeneralCSV {
         }
     }
 
+    /**
+     * Method creates/adds to a CSV to store data on Staff objects
+     * @param staff     Staff object
+     */
     public static void createPersonCSV(Staff staff) {
         try {
             File peopleRecord = new File("peopleRecord.csv");
@@ -69,6 +73,11 @@ public class PersonCSV extends GeneralCSV {
         }
     }
 
+    /**
+     * Method to iterate through Staff CSV and return specific type of Staff
+     * @param role  the specified role (Server/Chef/Manager)
+     * @return      ArrayList containing Staff of specified role
+     */
     public static ArrayList<String> getChosenStaff(String role) {
         ArrayList<String> chosenStaff = new ArrayList<>();
         try {

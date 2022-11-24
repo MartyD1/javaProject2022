@@ -4,6 +4,10 @@ import CSV.GeneralCSV;
 import java.io.*;
 
 public class  MenuCSV extends GeneralCSV {
+    /**
+     * Method to create/add to CSV file to store FoodItem data
+     * @param foodItem  FoodItem object to be added to CSV file
+     */
     public static void createMenuCSV(FoodItem foodItem) {
         try {
             File menuRecord = new File("menuRecord.csv");

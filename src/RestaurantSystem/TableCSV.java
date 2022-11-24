@@ -5,7 +5,10 @@ import java.io.*;
 //tablescsv subclass of generalcsv
 public class TableCSV extends GeneralCSV {
 
-//method to create table csv
+    /**
+     * Method to create/add to Table CSV to store data on a Table object
+     * @param table Object to be stored
+     */
     public static void createTableCSV(Table table) {
         try {
             File tableRecord = new File("table.csv");

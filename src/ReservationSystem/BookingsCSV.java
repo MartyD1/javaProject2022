@@ -8,6 +8,10 @@ import java.util.ArrayList;
 public class BookingsCSV extends GeneralCSV {
 
 
+    /**
+     * Method creates/adds to add to a Booking CSV to store data on Booking objects
+     * @param booking   a Booking object
+     */
     public static void createBookingsCSV(Booking booking) {
         try {
             File bookingsRecord = new File("bookingsRecord.csv");
@@ -43,6 +47,11 @@ public class BookingsCSV extends GeneralCSV {
     }
 
 
+    /**
+     * Method to iterate through Bookings CSV to find Bookings for specified date
+     * @param lineDate  specified date to get bookings for
+     * @return          ArrayList of Bookings on specified date
+     */
     public static ArrayList<String> getBookingsForDay(String lineDate) {
         ArrayList<String> bookingsForDay = new ArrayList<>();
         try {

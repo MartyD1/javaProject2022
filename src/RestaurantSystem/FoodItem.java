@@ -29,7 +29,8 @@ public class FoodItem {
     }
 
     /**
-     * @param line
+     * Constructor to create a FoodItem object using StringTokenizer
+     * @param line  a line containing all data to be broken down by StringTokenizer
      */
     public FoodItem(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
@@ -39,7 +40,6 @@ public class FoodItem {
         this.price = Double.parseDouble(token.nextToken());
     }
 
-    /*      Getters       */
 
     /**
      * @return type-type of fooditem starter,main...etc...
@@ -72,14 +72,15 @@ public class FoodItem {
     /**
      * @param name-name of food item
      */
-    /*      Setters       */
     public void setName(String name) {
         this.name = name;
     }
 
 
-
-    //tostring method for fooditem
+    /**
+     *
+     * @return  String representation of a FoodItem object
+     */
     @Override
     public String toString() {
         return String.format("\n%s: %s\n%s: %s\n%s: %s\n%s: %.2f\n\n", "Type", getType(),

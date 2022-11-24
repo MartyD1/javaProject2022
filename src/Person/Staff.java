@@ -29,6 +29,10 @@ public class Staff extends Person {
     }
 
 
+    /**
+     * Constructor to break down line of data to create Staff object
+     * @param line  a line containing all data to be broken down by StringTokenizer
+     */
     public Staff(String line) {
         super(line);
 

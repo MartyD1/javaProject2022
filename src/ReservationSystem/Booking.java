@@ -32,6 +32,10 @@ public class Booking implements Serializable {
         this.comments = comments;
     }
 
+    /**
+     * Constructor to break down line of data to create Booking object
+     * @param line  a line containing all data to be broken down by StringTokenizer
+     */
     public Booking(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
         this.date = new BookingDate(token.nextToken());

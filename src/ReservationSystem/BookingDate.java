@@ -15,7 +15,10 @@ public class BookingDate implements Serializable {
     private int day;
 
 
-
+    /**
+     * Constructor to break down a line of data to create a BookingDate object
+     * @param line  a line containing all data to be broken down by StringTokenizer
+     */
     public BookingDate(String line) { //remember line format is (yyyy-mm-dd)
         StringTokenizer str = new StringTokenizer(line, "-"); //converting String line into separate tokens
         this.year = Integer.parseInt(str.nextToken()); //tokens are of type String, int must be parsed
@@ -38,6 +41,11 @@ public class BookingDate implements Serializable {
      */
     public int getDay() {return day;}
 
+    /**
+     * Method to compare two objects, returns true if both the same
+     * @param obj   Object to be compared to other
+     * @return      boolean - whether or not two Objects are the same
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) return false;

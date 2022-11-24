@@ -23,6 +23,10 @@ public class Order {
         this.finalBill = finalBill;
     }
 
+    /**
+     * Method to breakdown line into a Order object using StringTokenizer
+     * @param line a line containing all data to be broken down by StringTokenizer
+     */
     public Order(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
         this.name = token.nextToken();

@@ -4,8 +4,12 @@ import CSV.GeneralCSV;
 import java.io.*;
 import java.util.ArrayList;
 
-//ordercsv extends generalCSV
+
 public class  OrderCSV extends GeneralCSV {
+    /**
+     * Method to create/add to Order CSV to store Order object data
+     * @param order Object to be stored
+     */
     public static void createOrderCSV(Order order) {
         try {
             File orderRecord = new File("orderRecord.csv");
@@ -32,6 +36,11 @@ public class  OrderCSV extends GeneralCSV {
         }
     }
 
+    /**
+     * Method to iterate over Menu CSV and return specified foodType
+     * @param foodType  the specified foodType to be returned
+     * @return          the array of the specified foodType
+     */
     public static ArrayList<String> getFoodType(String foodType) {
         ArrayList<String> chosenFoodType = new ArrayList<>();
         try {
