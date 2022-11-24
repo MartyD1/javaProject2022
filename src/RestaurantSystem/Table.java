@@ -1,10 +1,9 @@
 package RestaurantSystem;
-
+//imports
 import java.util.Scanner;
 
 import static CSV.GeneralCSV.readCSV;
-
-
+//public table class
 public class Table {
 
 //data fields
@@ -26,15 +25,14 @@ public class Table {
     public static String getTableNoOfSeats(){
         return numOfSeats;
     }
-
     // CSV stuff here
 
 
+    //table menu to add,remove and view tables or quit
     public void TableMenu(){
-
         // Scanner object
         Scanner scan = new Scanner(System.in);
-
+        //cont set true table menu ends when set false
         boolean cont = true;
 
         while(cont){
@@ -42,26 +40,23 @@ public class Table {
 
             System.out.println("(A)dd table, (R)emove table, (V)iew tables, (Q)uit");
             String command = scan.nextLine();
-
+            //add table
             if(command.equals("A")){
                 System.out.println("Enter table number:");
-                int num = scan.nextInt();
+                String num = scan.nextLine();
                 System.out.println("Enter number of seats:");
-                int seats = scan.nextInt();
+                String seats = scan.nextLine();
+                Table table = new Table(num, seats);}
 
-                Table table = new Table(num, seats);
-
-            } else if (command.equals("R")) {
-                System.out.println("REMOVE TABLE PLACEHOLDER");
-
-            } else if (command.equals("V")) {
+            //remove table
+            else if (command.equals("R")) {
+                System.out.println("REMOVE TABLE PLACEHOLDER");}
+            //view tables
+            else if (command.equals("V")) {
                 System.out.println("Tables: ");
-                readCSV("table.csv");
-
-            } else if (command.equals("Q")) {
-                cont = false;
-            }
-
+                readCSV("table.csv");}
+            //quit
+            else if (command.equals("Q")) {cont = false;}
         }
     }
 }

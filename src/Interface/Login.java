@@ -30,9 +30,9 @@ public class Login {
     String passField;
 
     Owner owner = new Owner("Name");
-    Menu menu = new Menu();
 
-    Restaurant restaurant = new Restaurant("Yum Restaurant", owner, menu);
+
+    Restaurant restaurant = new Restaurant("Yum Restaurant", owner);
     Scanner scan = new Scanner(System.in);
 
     Login() throws IOException {

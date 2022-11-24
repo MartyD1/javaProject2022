@@ -1,11 +1,11 @@
 package RestaurantSystem;
-
+//imports
 import CSV.GeneralCSV;
 import java.io.*;
-
+//tablescsv subclass of generalcsv
 public class TableCSV extends GeneralCSV {
 
-
+//method to create table csv
     public static void createTableCSV(Table table) {
         try {
             File tableRecord = new File("table.csv");
@@ -26,15 +26,10 @@ public class TableCSV extends GeneralCSV {
             bw.newLine();
 
             bw.flush();
-            bw.close();
-        } catch (UnsupportedEncodingException e) {
-            System.out.print(e);
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+            bw.close();}
+        catch (UnsupportedEncodingException e) {System.out.print(e);}
+
+        catch (IOException e) {System.out.println(e);}
     }
-
-
-
 }
 

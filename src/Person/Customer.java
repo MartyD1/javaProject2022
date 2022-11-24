@@ -1,40 +1,27 @@
 package Person;
 
-import ReservationSystem.Booking;
-
+//customer subclass of person
 public class Customer extends Person {
 
-    private Booking booking;
+    //private data field phonenumber of type string
     private String phoneNumber;
 
+    //customer constructor
     public Customer(String name, String phoneNumber){
         super(name);
         this.phoneNumber=phoneNumber;
     }
 
+    //get phonenumber
     public String getPhoneNumber() {
         return phoneNumber;
     }
+//set phonenumber
+public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
+    //customer tostring method
     @Override
     public String toString() {
         return String.format("%s,\nPhoneNumber: %s", super.toString(),getPhoneNumber());
     }
-
-    public Booking getBooking() {
-        return booking;
-    }
-
-    /*
-    These methods do not need to be here.
-    Customer extends Person so Customer class already has
-    access to methods from Person.
-     */
-//    public void pay(){
-//        super.orderPaid();
-//    }
-//
-//    public void tip(double tips){
-//        super.setTips(tips);
-//    }
 }

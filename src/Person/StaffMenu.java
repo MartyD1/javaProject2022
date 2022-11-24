@@ -26,6 +26,9 @@ public class StaffMenu {
                 System.out.println("Enter name: ");
                 String name = in.nextLine();
 
+                System.out.println("Enter role: ");
+                String role = in.nextLine();
+
                 System.out.println("Enter login details: ");
                 String login = in.nextLine();
 
@@ -34,7 +37,7 @@ public class StaffMenu {
 
                 System.out.println();
 
-                Staff staff = new Staff(name, login, password);
+                Staff staff = new Staff(name, role, login, password);
                 createPersonCSV(staff);
 
             }

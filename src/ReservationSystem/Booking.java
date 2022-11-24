@@ -1,8 +1,9 @@
 package ReservationSystem;
 
 import Person.Customer;
-import RestaurantSystem.Table;
 
+
+//imports
 import java.io.Serializable;
 import java.util.StringTokenizer;
 
@@ -10,22 +11,33 @@ import java.util.StringTokenizer;
  * Class to create a booking object
  */
 public class Booking implements Serializable {
-
+//data fields
     private BookingDate date;
     private BookingTime time;
-
     private Customer customer;
     private String numberOfPeople;
     private String comments;
 
-    public Booking(BookingDate date, BookingTime time, Customer customer, String numberOfPeople, String comments) {
+
+    /**
+     * @param date
+     * @param time
+     * @param customer
+     * @param numberOfPeople
+     * @param comments
+     */
+    public Booking(BookingDate date, BookingTime time, Customer customer, String numberOfPeople,  String comments) {
         this.date = date;
         this.time = time;
         this.customer=customer;
         this.numberOfPeople = numberOfPeople;
         this.comments = comments;
+
     }
 
+    /**
+     * @param line
+     */
     public Booking(String line) {
         StringTokenizer token = new StringTokenizer(line, ",");
         this.date = new BookingDate(token.nextToken());
