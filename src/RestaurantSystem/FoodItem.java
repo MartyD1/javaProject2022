@@ -14,40 +14,13 @@ public class FoodItem {
     private String description;
     private double price;
 
-
-
-    public enum Allergens{
-        CEREALS("C"),
-        CRUSTACEANS("CR"),
-        EGGS("E"),
-        FISH("F"),
-        PEANUTS("PN"),
-        SOYBEANS("SB"),
-        MILK("M"),
-        NUTS("N"),
-        MUSTARD("MU"),
-        SESAME_SEEDS("SS"),
-        SULPHUR_DIOXIDE("SD"),
-        LUPIN("L"),
-        MOLLUSCS("MO");
-
-
-        public final String allergenCode;
-
-        private Allergens(String allergenCode){
-            this.allergenCode = allergenCode;
-
-        }
-
-    }
-
-
     /**
      * @param type
      * @param name
      * @param description
      * @param price
      */
+    //fooditem constructor
     public FoodItem(char type, String name, String description, double price){
         this.type = type;
         this.name = name;
